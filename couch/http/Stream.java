@@ -2,7 +2,7 @@ package couch.http;
 
 import java.util.HashMap;
 
-class Stream
+abstract class Stream
 {
     public static final int TYPE_REQUEST = 1;
     public static final int TYPE_RESPONSE = 2;
@@ -10,12 +10,20 @@ class Stream
     protected int type;
     protected String httpVersion;
 
-    protected HashMap headers = null;
+    protected HashMap headers;
+    protected Object body;
 
-    public Stream()
+    protected String error;
+    protected HashMap errorData = new HashMap<String, String>();
+
+    public Object getBody()
     {
-        this.headers = new HashMap<String, String>();
+        return this.body;
     }
+
+    // public Object getBodyData()
+    // {
+    // }
 
     public void setHeader(String key, String value)
     {
@@ -35,4 +43,16 @@ class Stream
     {
         return this.headers;
     }
+
+    // public void setError(String body)
+    // {
+    // }
+
+    // public HashMap getError()
+    // {
+    // }
+
+    // public String getErrorData()
+    // {
+    // }
 }

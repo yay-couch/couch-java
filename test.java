@@ -1,5 +1,9 @@
+import couch.Couch;
+import couch.Client;
 import couch.http.Request;
 import couch.http.Response;
+import couch.util.Util;
+import couch.Query;
 
 import java.util.*;
 
@@ -7,16 +11,24 @@ class Test
 {
     public static void main(String[] args)
     {
-        // System.out.println("Hello World!");
+        // Couch couch = new Couch();
+        // Client client = new Client(couch);
+        // Request request = new Request(client);
 
-        Request req = new Request("");
+        // request.setMethod("GET");
+        // request.setUri("/", null);
 
-        // req.setUri("localhost");
-        // System.out.println(req.getUri());
+        // System.out.println(request.getHeaderAll());
 
-        req.setHeader("Foo", "bar..");
+        HashMap map = Util.map(
+            "foo", "bar",
+            "x", true,
+            "y", 1,
+            "z", null
+        );
+        // System.out.println(map);
 
-        System.out.println(req.getHeaderAll());
-        System.out.println(req.getHeader("Foo"));
+        Query query = new Query(map);
+        System.out.println(query.toString());
     }
 }
