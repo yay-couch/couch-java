@@ -4,16 +4,18 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Arrays;
 import java.net.URLEncoder;
+import couch.util.Util;
 
 public class Query
 {
-    private HashMap data;
+    private HashMap<String, Object> data;
     private String dataString = "";
 
     public Query() {
     }
-    public Query(HashMap data) {
+    public Query(HashMap<String, Object> data) {
         this.data = data;
     }
 
@@ -26,7 +28,7 @@ public class Query
         return this.data.get(key);
     }
 
-    public HashMap toArray() {
+    public HashMap<String, Object> toArray() {
         return this.data;
     }
 
@@ -36,22 +38,28 @@ public class Query
         }
 
         int i = 0;
-        int[] data = new int[this.data.size()];
-        Iterator iter = this.data.entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry me = (Map.Entry) iter.next();
-            if (me.getValue() == null) {
-                continue;
-            }
+        int size = this.data.size();
+        if (size == 0) {
+            return "";
+        }
+
+        for (Map.Entry me : this.data.entrySet()) {
             String key = (String) me.getKey();
             Object value = (Object) me.getValue();
+            if (value == null) {
+                continue;
+            }
             if (value instanceof Integer) {
                 value = String.valueOf(value);
             } else if (value instanceof Boolean) {
                 value = String.valueOf(value).toLowerCase();
             }
-            data[i++] = URLEncoder.encode(key) +"="+ URLEncoder.encode((String) value);
-            System.out.println(data);
+            this.dataString += URLEncoder.encode(key) +"="+ URLEncoder.encode((String) value) + "&";
+        }
+
+        int len = dataString.length();
+        if (len != 0) {
+            dataString = dataString.substring(0, len - 1);
         }
 
         return this.dataString;
