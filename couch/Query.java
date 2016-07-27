@@ -57,9 +57,9 @@ public class Query
             this.dataString += URLEncoder.encode(key) +"="+ URLEncoder.encode((String) value) + "&";
         }
 
-        int len = dataString.length();
+        int len = this.dataString.length();
         if (len != 0) {
-            dataString = dataString.substring(0, len - 1);
+            this.dataString = this.dataString.substring(0, len - 1);
         }
 
         return this.dataString;

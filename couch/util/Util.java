@@ -1,7 +1,7 @@
 package couch.util;
 
-import java.util.HashMap;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.lang.IllegalArgumentException;
 import javax.xml.bind.DatatypeConverter;
 
