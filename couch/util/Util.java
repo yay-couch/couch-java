@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.lang.IllegalArgumentException;
 import javax.xml.bind.DatatypeConverter;
 
+import org.json.*;
+
 public final class Util
 {
     public static HashMap<String, Object> map(Object... args) throws IllegalArgumentException {
@@ -17,6 +19,14 @@ public final class Util
             map.put((String) args[i - 1], args[i]);
         }
         return map;
+    }
+
+    public static String jsonEncode(HashMap data) {
+        return new JSONObject(data).toString();
+    }
+
+    public static JSONObject jsonDecode(String data) {
+        return new JSONObject(data);
     }
 
     public static String base64Encode(String data) {
