@@ -1,9 +1,11 @@
 package couch.http;
 
+import java.util.HashMap;
+
 import couch.Couch;
 import couch.Client;
+import couch.Query;
 import couch.util.Util;
-import java.util.HashMap;
 
 public class Request extends Stream
 {
@@ -13,9 +15,9 @@ public class Request extends Stream
     public static final String METHOD_PUT    = "PUT";
     public static final String METHOD_DELETE = "DELETE";
     public static final String METHOD_COPY   = "COPY";
-    Client client;
-    String method;
-    String uri;
+    public Client client;
+    private String method;
+    private String uri;
 
     public Request(Client client) {
         this.type = Stream.TYPE_REQUEST;
@@ -49,8 +51,18 @@ public class Request extends Stream
         this.uri = uri;
         return this;
     }
-    public Request setUri(String uri, HashMap uriParams) {
+    public Request setUri(String uri, Object uriParams) {
         this.uri = uri;
+        String query = "";
+        if (uriParams instanceof HashMap) {
+            query = (new Query((HashMap) uriParams)).toString();
+        } else if (uriParams instanceof Query) {
+            query = ((Query) uriParams).toString();
+        }
+        if (query != "") {
+            this.uri += "?"+ query;
+        }
+        System.out.println(this.uri);
         return this;
     }
 }
