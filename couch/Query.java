@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Arrays;
 import java.net.URLEncoder;
+
 import couch.util.Util;
 
 public class Query
@@ -33,6 +34,10 @@ public class Query
     }
 
     public String toString() {
+        if (this.data == null) {
+            return "";
+        }
+
         if (this.dataString != "") {
             return this.dataString;
         }
@@ -61,6 +66,8 @@ public class Query
         if (len != 0) {
             this.dataString = this.dataString.substring(0, len - 1);
         }
+
+        this.dataString = this.dataString.replace("%5B", "[").replace("%5D", "]");
 
         return this.dataString;
     }
