@@ -55,14 +55,28 @@ public class Request extends Stream
         this.uri = uri;
         String query = "";
         if (uriParams instanceof HashMap) {
-            query = (new Query((HashMap) uriParams)).toString();
+            query = new Query((HashMap) uriParams).toString();
         } else if (uriParams instanceof Query) {
             query = ((Query) uriParams).toString();
         }
         if (query != "") {
             this.uri += "?"+ query;
         }
-        System.out.println(this.uri);
+        return this;
+    }
+
+    public Request setBody(Object body) {
+        if (body != null
+            && this.method != Request.METHOD_HEAD
+            && this.method != Request.METHOD_GET
+        ) {
+            if (this.getHeader("Content-Type") == "application/json") {
+                body = Util.jsonEncode((HashMap) body);
+            }
+            this.body = ""+ body;
+            this.setHeader("Content-Length", ""+ (""+ body).length());
+        }
+
         return this;
     }
 }
