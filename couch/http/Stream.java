@@ -10,11 +10,11 @@ abstract class Stream
     protected int type;
     protected String httpVersion;
 
-    protected HashMap headers;
+    protected HashMap<String, String> headers;
     protected Object body;
 
     protected String error;
-    protected HashMap errorData = new HashMap<String, String>();
+    protected HashMap<String, String> errorData = new HashMap<String, String>();
 
     public Object getBody()
     {
@@ -36,10 +36,10 @@ abstract class Stream
 
     public String getHeader(String key)
     {
-        return (String) this.headers.get(key);
+        return ((String) this.headers.get(key));
     }
 
-    public HashMap getHeaderAll()
+    public HashMap<String, String> getHeaderAll()
     {
         return this.headers;
     }
@@ -48,7 +48,7 @@ abstract class Stream
     // {
     // }
 
-    // public HashMap getError()
+    // public HashMap<String, String> getError()
     // {
     // }
 
