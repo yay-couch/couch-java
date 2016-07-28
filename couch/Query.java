@@ -15,6 +15,7 @@ public class Query
     private String dataString = "";
 
     public Query() {
+        this.data = new HashMap<String, Object>();
     }
     public Query(HashMap<String, Object> data) {
         this.data = data;
@@ -70,5 +71,15 @@ public class Query
         this.dataString = this.dataString.replace("%5B", "[").replace("%5D", "]");
 
         return this.dataString;
+    }
+
+    public Query skip(int num) {
+        this.data.put("skip", num);
+        return this;
+    }
+
+    public Query limit(int num) {
+        this.data.put("limit", num);
+        return this;
     }
 }
