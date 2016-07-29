@@ -5,30 +5,63 @@ import couch.http.Response;
 import couch.util.Util;
 import couch.Query;
 
+import org.json.*;
+
 import java.util.*;
+import java.net.URL;
 
 class Test
 {
     public static void main(String[] args)
     {
-        // Couch couch = new Couch();
-        // Client client = new Client(couch);
-        // Request request = new Request(client);
+        Couch couch = new Couch();
+        Client client = new Client(couch);
+        Request request = new Request(client);
 
         // request.setMethod("GET");
         // request.setUri("/", null);
 
         // System.out.println(request.getHeaderAll());
 
-        HashMap map = Util.map(
-            "foo", "bar",
-            "x", true,
-            "y", 1,
-            "z", null
-        );
-        // System.out.println(map);
+        // HashMap query = Util.map(
+        //     "foo", "bar",
+        //     "x", true,
+        //     "y", 1,
+        //     "z", "[hello][boo]"
+        // );
+        // // System.out.println(map);
 
-        Query query = new Query(map);
-        System.out.println(query.toString());
+        // // Query query = new Query(map);
+        // Query query = new Query();
+        // query.set("111");
+
+        // // System.out.println(query.toString());
+
+        // request.setUri("/", query);
+
+        // HashMap map = new HashMap();
+        // map.put("name", "kerem");
+        // request.setBody(map);
+        // System.out.println(request.getBody());
+
+        // HashMap map = new HashMap();
+        // map.put("name", "foo");
+        // String json = JSONValue.toJSONString(map);
+
+        // HashMap map = Util.map("name", "foo");
+
+        // String js = Util.jsonEncode(map);
+        // System.out.println(js);
+
+        // JSONObject jo = Util.jsonDecode(js);
+        // System.out.println(jo.get("name"));
+
+        // JSONObject js = new JSONObject(map);
+        // System.out.println(js.get("name") == 1);
+
+
+        URL url = Util.urlParse("local.com/foo");
+
+        System.out.println(url.getPath());
     }
 }

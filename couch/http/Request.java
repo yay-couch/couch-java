@@ -1,5 +1,6 @@
 package couch.http;
 
+import java.net.URL;
 import java.util.HashMap;
 
 import couch.Couch;
@@ -63,6 +64,13 @@ public class Request extends Stream
             this.uri += "?"+ query;
         }
         return this;
+    }
+
+    public String send(Object body) {
+        URL url = Util.urlParse(this.uri);
+        String recv = "";
+
+        return recv;
     }
 
     public Request setBody(Object body) {
