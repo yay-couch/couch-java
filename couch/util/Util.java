@@ -1,5 +1,6 @@
 package couch.util;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.lang.IllegalArgumentException;
@@ -19,6 +20,22 @@ public final class Util
             map.put((String) args[i - 1], args[i]);
         }
         return map;
+    }
+
+    public static URL urlParse(String url) throws IllegalArgumentException {
+        if (url == "") {
+            throw new IllegalArgumentException("No valid URL given!");
+        }
+
+        if (!url.matches("^https?://(.*)")) {
+            url = "http://"+ url;
+        }
+
+        try {
+            return new URL(url);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static String jsonEncode(HashMap data) {
