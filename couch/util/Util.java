@@ -67,4 +67,8 @@ public final class Util
 
         return out.toString().substring(0, out.length() - 1);
     }
+
+    public static Object ifNull(Object a, Object b) {
+        return (a != null) ? a : b;
+    }
 }
