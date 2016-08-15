@@ -1,7 +1,12 @@
 package couch.http;
 
-import java.net.URL;
+import java.util.Map;
 import java.util.HashMap;
+import java.net.URL;
+import java.net.Socket;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import couch.Couch;
 import couch.Client;
@@ -68,7 +73,21 @@ public class Request extends Stream
 
     public String send(Object body) {
         URL url = Util.urlParse(this.uri);
-        String recv = "";
+        Socket sock, err = null;
+        String send = "", recv = "";
+
+        send += String.format("%s %s?%s HTTP/%s\r\n",
+            this.method, url.getPath(), Util.ifNull(url.getQuery(), ""), this.httpVersion);
+        for (Map.Entry header : this.headers.entrySet()) {
+            String key = (String) header.getKey();
+            String value = (String) header.getValue();
+            if (value != null) {
+                send += String.format("%s: %s\r\n", key, value);
+            }
+        }
+
+        System.out.println(send);
+        // System.out.println(recv);
 
         return recv;
     }
