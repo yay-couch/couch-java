@@ -17,6 +17,10 @@ public class Client
         this.couch = couch;
     }
 
+    public Couch getCouch() {
+        return this.couch;
+    }
+
     public String getHost() {
         return this.host;
     }
