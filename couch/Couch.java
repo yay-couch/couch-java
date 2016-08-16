@@ -10,5 +10,11 @@ public class Couch
     private HashMap config = new HashMap<String, Object>();
 
     public Couch() {}
+
     // public Couch(HashMap config) {}
+
+    public Couch(HashMap config, Boolean debug) {
+        this.config = config;
+        this.DEBUG = debug;
+    }
 }
