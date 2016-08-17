@@ -7,16 +7,24 @@ import couch.Query;
 
 import org.json.*;
 
+import java.io.*;
 import java.util.*;
 import java.net.URL;
 
 class Test
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws Exception {
         Couch couch = new Couch();
+        // Couch couch = new Couch(null, true);
+        // Couch couch = new Couch(Util.map("debug", true));
         Client client = new Client(couch);
         Request request = new Request(client);
+
+        request.setMethod("GET");
+        request.setUri("/", null);
+        request.send("");
+
+        System.out.println(request.toString());
 
         // request.setMethod("GET");
         // request.setUri("/", null);
@@ -34,9 +42,7 @@ class Test
         // // Query query = new Query(map);
         // Query query = new Query();
         // query.set("111");
-
-        // // System.out.println(query.toString());
-
+        // System.out.println(query.toString());
         // request.setUri("/", query);
 
         // HashMap map = new HashMap();
@@ -60,8 +66,7 @@ class Test
         // System.out.println(js.get("name") == 1);
 
 
-        URL url = Util.urlParse("local.com/foo");
-
-        System.out.println(url.getPath());
+        // URL url = Util.urlParse("localhost/foo");
+        // System.out.println(url.getHost());
     }
 }
