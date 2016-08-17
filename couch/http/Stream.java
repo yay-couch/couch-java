@@ -13,7 +13,7 @@ abstract class Stream
     protected int type;
     protected String httpVersion;
 
-    protected HashMap<String, String> headers = new HashMap<String, String>();;
+    protected HashMap<String, String> headers;
     protected Object body;
 
     protected String error;
@@ -36,7 +36,7 @@ abstract class Stream
     }
 
     public String getHeader(String key) {
-        return ((String) this.headers.get(key));
+        return (String) this.headers.get(key);
     }
 
     public HashMap<String, String> getHeaderAll() {
