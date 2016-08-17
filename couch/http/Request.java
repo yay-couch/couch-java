@@ -97,13 +97,13 @@ public class Request extends Stream
 
         try {
             Socket socket = new Socket(this.client.getHost(), this.client.getPort());
-            OutputStream os = socket.getOutputStream();
-            os.write(send.getBytes());
-            os.flush();
+            OutputStream output = socket.getOutputStream();
+            output.write(send.getBytes());
+            output.flush();
 
             int ch;
-            InputStream is = socket.getInputStream();
-            while ((ch = is.read()) != -1) {
+            InputStream input = socket.getInputStream();
+            while ((ch = input.read()) != -1) {
                 recv += String.valueOf((char) ch);
             }
             socket.close();
