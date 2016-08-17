@@ -36,4 +36,12 @@ public class Client
     public String getPassword() {
         return this.password;
     }
+
+    public Request getRequest() {
+        return this.request;
+    }
+
+    public Response getResponse() {
+        return this.response;
+    }
 }
