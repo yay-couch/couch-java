@@ -1,6 +1,9 @@
 package couch.http;
 
+import java.util.Map;
 import java.util.HashMap;
+
+import couch.util.Util;
 
 abstract class Stream
 {
@@ -10,14 +13,13 @@ abstract class Stream
     protected int type;
     protected String httpVersion;
 
-    protected HashMap<String, String> headers;
+    protected HashMap<String, String> headers = new HashMap<String, String>();;
     protected Object body;
 
     protected String error;
     protected HashMap<String, String> errorData = new HashMap<String, String>();
 
-    public Object getBody()
-    {
+    public Object getBody() {
         return this.body;
     }
 
@@ -25,8 +27,7 @@ abstract class Stream
     // {
     // }
 
-    public void setHeader(String key, String value)
-    {
+    public void setHeader(String key, String value) {
         if (value == null) {
             this.headers.remove(key);
         } else {
@@ -34,13 +35,11 @@ abstract class Stream
         }
     }
 
-    public String getHeader(String key)
-    {
+    public String getHeader(String key) {
         return ((String) this.headers.get(key));
     }
 
-    public HashMap<String, String> getHeaderAll()
-    {
+    public HashMap<String, String> getHeaderAll() {
         return this.headers;
     }
 
@@ -55,4 +54,22 @@ abstract class Stream
     // public String getErrorData()
     // {
     // }
+
+    public String toString(String firstLine) {
+        String ret = firstLine;
+        for (Map.Entry header : this.headers.entrySet()) {
+            String key = (String) header.getKey();
+            String value = (String) header.getValue();
+            if (value != null) {
+                if (value == "0") {
+                    continue;
+                }
+                ret += String.format("%s: %s\r\n", key, value);
+            }
+        }
+        ret += "\r\n";
+        ret += Util.ifNull(this.getBody(), "");
+
+        return ret;
+    }
 }
