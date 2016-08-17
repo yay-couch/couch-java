@@ -24,6 +24,10 @@ public class Couch
     }
 
     public void setConfig(HashMap<String, Object> config) {
+        if (config == null) {
+            return;
+        }
+
         this.config = config;
 
         Boolean debug = (Boolean) this.config.get("debug");
