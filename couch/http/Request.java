@@ -30,15 +30,16 @@ public class Request extends Stream
         this.httpVersion = "1.0";
         this.client = client;
         this.headers = new HashMap<String, String>();
-        this.headers.put("Host", this.client.host +":"+ this.client.port);
+        this.headers.put("Host", this.client.getHost() +":"+ this.client.getPort());
         this.headers.put("Connection", "close");
         this.headers.put("Accept", "application/json");
         this.headers.put("Content-Type", "application/json");
         this.headers.put("User-Agent",
             Couch.NAME +"/v"+ Couch.VERSION +" (+http://github.com/yay-couch/couch-java)");
-        if (this.client.username != null && this.client.password != null) {
-            this.headers.put("Authorization", "Basic "+
-                Util.base64Encode(this.client.username +":"+ this.client.password));
+        String username = this.client.getUsername(),
+               password = this.client.getPassword();
+        if (username != null && password != null) {
+            this.headers.put("Authorization", "Basic "+ Util.base64Encode(username +":"+ password));
         }
     }
 
@@ -71,9 +72,10 @@ public class Request extends Stream
         return this;
     }
 
-    public String send(Object body) {
+    public String send(Object body) throws IOException {
         URL url = Util.urlParse(this.uri);
-        Socket sock, err = null;
+        Socket sock = null;
+        IOException err = null;
         String send = "", recv = "";
 
         send += String.format("%s %s?%s HTTP/%s\r\n",
@@ -86,8 +88,32 @@ public class Request extends Stream
             }
         }
 
-        System.out.println(send);
-        // System.out.println(recv);
+        send += "\r\n";
+        send += Util.ifNull(this.getBody(), "");
+
+        try {
+            Socket socket = new Socket(this.client.getHost(), this.client.getPort());
+            OutputStream os = socket.getOutputStream();
+            os.write(send.getBytes());
+            os.flush();
+
+            int ch;
+            InputStream is = socket.getInputStream();
+            while ((ch = is.read()) != -1) {
+                recv += String.valueOf((char) ch);
+            }
+            socket.close();
+        } catch (IOException e) {
+            err = e;
+        }
+
+        if (this.client.getCouch().DEBUG) {
+            System.out.println(send);
+            System.out.println(recv);
+            if (err != null) {
+                throw err;
+            }
+        }
 
         return recv;
     }
