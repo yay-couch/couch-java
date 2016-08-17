@@ -43,6 +43,10 @@ public class Request extends Stream
         }
     }
 
+    public Client getClient() {
+        return this.client;
+    }
+
     public Request setMethod(String method) {
         this.method = method.toUpperCase();
         if (this.method != Request.METHOD_HEAD
