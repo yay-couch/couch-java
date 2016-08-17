@@ -21,7 +21,7 @@ public class Request extends Stream
     public static final String METHOD_PUT    = "PUT";
     public static final String METHOD_DELETE = "DELETE";
     public static final String METHOD_COPY   = "COPY";
-    public Client client;
+    private Client client;
     private String method;
     private String uri;
 
@@ -131,5 +131,13 @@ public class Request extends Stream
         }
 
         return this;
+    }
+
+    @Override
+    public String toString() {
+        URL url = Util.urlParse(this.uri);
+
+        return super.toString(String.format("%s %s?%s HTTP/%s\r\n",
+            this.method, url.getPath(), Util.ifNull(url.getQuery(), ""), this.httpVersion));
     }
 }
