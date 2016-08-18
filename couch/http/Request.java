@@ -129,7 +129,7 @@ public class Request extends Stream
                 body = Util.jsonEncode((HashMap) body);
             }
             this.body = ""+ body;
-            this.setHeader("Content-Length", ""+ (""+ body).length());
+            this.setHeader("Content-Length", (""+ body).length());
         }
 
         return this;
