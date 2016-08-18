@@ -71,4 +71,21 @@ public final class Util
     public static Object ifNull(Object a, Object b) {
         return (a != null) ? a : b;
     }
+
+    public static HashMap<String, String> parseHeaders(String headers) {
+        HashMap<String, String> ret = new HashMap<String, String>();
+
+        String[] tmp = headers.split("\r\n");
+        if (tmp.length > 0) {
+            ret.put("0", tmp[0]);
+            for (int i = 1; i < tmp.length; i++) {
+                String[] t = tmp[i].split(":", 2);
+                if (t.length == 2) {
+                    ret.put(t[0].trim(), t[1].trim());
+                }
+            }
+        }
+
+        return ret;
+    }
 }
