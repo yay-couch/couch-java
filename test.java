@@ -20,11 +20,13 @@ class Test
         Client client = new Client(couch);
         Request request = new Request(client);
 
-        request.setMethod("GET");
-        request.setUri("/", null);
-        request.send("");
+        // request.setMethod("GET");
+        // request.setUri("/", null);
+        // request.send("");
 
-        System.out.println(request.toString());
+        client.request("GET /", null, null, null);
+
+        // System.out.println(request.toString());
 
         // request.setMethod("GET");
         // request.setUri("/", null);
@@ -70,3 +72,5 @@ class Test
         // System.out.println(url.getHost());
     }
 }
+
+// @SuppressWarnings("unchecked")
