@@ -74,7 +74,7 @@ public class Request extends Stream
         return this;
     }
 
-    public String send(Object body) throws IOException {
+    public String send() throws IOException {
         URL url = Util.urlParse(this.uri);
         Socket sock = null;
         IOException err = null;
