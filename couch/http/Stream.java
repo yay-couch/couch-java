@@ -27,11 +27,11 @@ abstract class Stream
     // {
     // }
 
-    public void setHeader(String key, String value) {
+    public void setHeader(String key, Object value) {
         if (value == null) {
             this.headers.remove(key);
         } else {
-            this.headers.put(key, value);
+            this.headers.put(key, (String) value);
         }
     }
 
