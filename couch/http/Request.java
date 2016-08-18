@@ -58,20 +58,18 @@ public class Request extends Stream
         return this;
     }
 
-    public Request setUri(String uri) {
-        this.uri = uri;
-        return this;
-    }
     public Request setUri(String uri, Object uriParams) {
         this.uri = uri;
-        String query = "";
-        if (uriParams instanceof HashMap) {
-            query = new Query((HashMap) uriParams).toString();
-        } else if (uriParams instanceof Query) {
-            query = ((Query) uriParams).toString();
-        }
-        if (query != "") {
-            this.uri += "?"+ query;
+        if (uriParams != null) {
+            String query = "";
+            if (uriParams instanceof HashMap) {
+                query = new Query((HashMap) uriParams).toString();
+            } else if (uriParams instanceof Query) {
+                query = ((Query) uriParams).toString();
+            }
+            if (query != "") {
+                this.uri += "?"+ query;
+            }
         }
         return this;
     }
