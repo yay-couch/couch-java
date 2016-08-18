@@ -69,9 +69,9 @@ public class Client
             .setUri(uri, uriParams)
             .setBody(body);
 
-        if (headers instanceof HashMap) {
+        if (headers != null) {
             for (Map.Entry header : headers.entrySet()) {
-                this.request.setHeader((String) header.getKey(), (String) header.getValue());
+                this.request.setHeader((String) header.getKey(), header.getValue());
             }
         }
 
