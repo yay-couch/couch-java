@@ -25,9 +25,21 @@ abstract class Stream
         return this.body;
     }
 
-    // public Object getBodyData()
-    // {
-    // }
+    public Object getBodyData() {
+        return this.getBodyData(null);
+    }
+    public Object getBodyData(String key)
+    {
+        Object bodyData;
+        if (this.getHeader("Content-Type") == "application/json") {
+            String body = (String) Util.ifNull(this.body, "");
+            try {
+                bodyData = Util.jsonDecode(body);
+            } catch (Exception e) {}
+        }
+
+        return bodyData;
+    }
 
     public void setHeader(String key, Object value) {
         if (value == null) {
