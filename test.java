@@ -23,10 +23,13 @@ class Test
         // request.setMethod("GET");
         // request.setUri("/", null);
         // request.send("");
-
-        client.request("GET /", null, null, null);
-
         // System.out.println(request.toString());
+
+        Response response = client.request("GET /", null, null, null);
+        System.out.println(response.toString());
+
+        JSONObject jo = (JSONObject) response.getBodyData();
+        System.out.println(jo);
 
         // request.setMethod("GET");
         // request.setUri("/", null);
