@@ -61,7 +61,7 @@ abstract class Stream
             String key = (String) header.getKey();
             String value = (String) header.getValue();
             if (value != null) {
-                if (value == "0") {
+                if (key == "0") {
                     continue;
                 }
                 ret += String.format("%s: %s\r\n", key, value);
