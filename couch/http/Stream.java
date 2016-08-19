@@ -60,10 +60,7 @@ abstract class Stream
         for (Map.Entry header : this.headers.entrySet()) {
             String key = (String) header.getKey();
             String value = (String) header.getValue();
-            if (value != null) {
-                if (key == "0") {
-                    continue;
-                }
+            if (value != null && key != "0") {
                 ret += String.format("%s: %s\r\n", key, value);
             }
         }
