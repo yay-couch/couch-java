@@ -3,6 +3,8 @@ package couch.http;
 import java.util.Map;
 import java.util.HashMap;
 
+import org.json.*;
+
 import couch.util.Util;
 
 abstract class Stream
@@ -43,17 +45,28 @@ abstract class Stream
         return this.headers;
     }
 
-    // public void setError(String body)
-    // {
-    // }
+    public void setError(String body)
+    {
+        body = (String) Util.ifNull(body, Util.ifNull(this.body, ""));
+        try {
+            JSONObject bodyJson = Util.jsonDecode(body);
+            String error = (String) bodyJson.get("error"),
+                   reason = (String) bodyJson.get("reason");
+            this.error = String.format("Stream Error >> error: '%s', reason: '%s'", error, reason);
+            this.errorData.put("error", error);
+            this.errorData.put("reason", reason);
+        } catch (Exception e) {}
+    }
 
-    // public HashMap<String, String> getError()
-    // {
-    // }
+    public String getError()
+    {
+        return this.error;
+    }
 
-    // public String getErrorData()
-    // {
-    // }
+    public HashMap<String, String> getErrorData()
+    {
+        return this.errorData;
+    }
 
     public String toString(String firstLine) {
         String ret = firstLine;
