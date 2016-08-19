@@ -135,7 +135,6 @@ public class Request extends Stream
         return this;
     }
 
-    @Override
     public String toString() {
         URL url = Util.urlParse(this.uri);
 
