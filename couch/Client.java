@@ -51,7 +51,7 @@ public class Client
         return this.response;
     }
 
-    public void request(String uri, Object uriParams, Object body,
+    public Response request(String uri, Object uriParams, Object body,
             HashMap<String, String> headers) throws Exception {
         Pattern pattern = Pattern.compile("^([A-Z]+)\\s+(/.*)");
         Matcher matcher = pattern.matcher(uri);
@@ -62,7 +62,8 @@ public class Client
         this.request = new Request(this);
         this.response = new Response();
 
-        uri = String.format("%s:%s/%s", this.host, this.port, matcher.group(2).replaceAll("\\s+|/+", ""));
+        uri = String.format("%s:%s/%s",
+            this.host, this.port, matcher.group(2).replaceAll("\\s+|/+", ""));
 
         this.request
             .setMethod(matcher.group(1))
@@ -80,11 +81,24 @@ public class Client
             String[] tmp = result.split("\\r\\n\\r\\n", 2);
             if (tmp.length == 2) {
                 headers = Util.parseHeaders(tmp[0]);
-                System.out.println(headers);
+                if (headers.size() > 0) {
+                    for (Map.Entry header : headers.entrySet()) {
+                        String key = (String) header.getKey();
+                        String value = (String) header.getValue();
+                        if (key == "0") {
+                            this.response.setStatus(value);
+                        }
+                        this.response.setHeader(key, value);
+                    }
+                    this.response.setBody(tmp[1]);
+                }
             }
-
-            // System.out.println(tmp[3]);
         }
 
+        if (this.response.getStatusCode() >= 400) {
+            this.response.setError(null);
+        }
+
+        return this.response;
     }
 }
