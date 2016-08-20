@@ -43,7 +43,16 @@ public final class Util
     }
 
     public static JSONObject jsonDecode(String data) {
-        return new JSONObject(data);
+        return new JSONObject(data) {
+            @Override
+            public Object get(String key) { // skip exception
+                try {
+                    return super.get(key);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        };
     }
 
     public static String base64Encode(String data) {
