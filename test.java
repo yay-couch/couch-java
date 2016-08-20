@@ -2,8 +2,8 @@ import couch.Couch;
 import couch.Client;
 import couch.http.Request;
 import couch.http.Response;
-import couch.util.Util;
 import couch.Query;
+import couch.util.*;
 
 import org.json.*;
 
@@ -28,8 +28,11 @@ class Test
         Response response = client.request("GET /", null, null, null);
         System.out.println(response.toString());
 
+        System.out.println("---");
+
         JSONObject jo = (JSONObject) response.getBodyData();
-        System.out.println(jo);
+        System.out.println(((JSONObject)jo.get("vendor")).get("name"));
+        // System.out.println(((JSONObject) jo).get("foo"));
 
         // request.setMethod("GET");
         // request.setUri("/", null);
@@ -70,6 +73,8 @@ class Test
         // JSONObject js = new JSONObject(map);
         // System.out.println(js.get("name") == 1);
 
+        // JSONObject json = Util.jsonDecode("{\"foo\":123}");
+        // System.out.println(json.get("foo"));
 
         // URL url = Util.urlParse("localhost/foo");
         // System.out.println(url.getHost());
