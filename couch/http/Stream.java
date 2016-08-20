@@ -28,10 +28,10 @@ abstract class Stream
     public Object getBodyData() {
         return this.getBodyData(null);
     }
-    public Object getBodyData(String key)
+    public JSONObject getBodyData(String key)
     {
-        Object bodyData;
-        if (this.getHeader("Content-Type") == "application/json") {
+        JSONObject bodyData = null;
+        if (this.getHeader("Content-Type").contains("application/json")) {
             String body = (String) Util.ifNull(this.body, "");
             try {
                 bodyData = Util.jsonDecode(body);
