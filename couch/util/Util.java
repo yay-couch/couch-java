@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.lang.IllegalArgumentException;
 import javax.xml.bind.DatatypeConverter;
 
-import org.json.*;
+import org.json.JSONObject;
 
 public final class Util
 {
