@@ -30,9 +30,9 @@ class Test
 
         System.out.println("---");
 
-        JSONObject jo = (JSONObject) response.getBodyData();
-        System.out.println(((JSONObject)jo.get("vendor")).get("name"));
-        // System.out.println(((JSONObject) jo).get("foo"));
+        // JSONObject jo = (JSONObject) response.getBodyData();
+        // // System.out.println(jo.get("foo"));
+        // System.out.println(((JSONObject)jo.get("vendor")).get("name"));
 
         // request.setMethod("GET");
         // request.setUri("/", null);
