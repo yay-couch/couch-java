@@ -48,7 +48,7 @@ public final class Util
             public Object get(String key) { // skip exception
                 try {
                     return super.get(key);
-                } catch (Exception e) {
+                } catch (JSONException e) {
                     return null;
                 }
             }
