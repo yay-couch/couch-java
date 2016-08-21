@@ -1,16 +1,24 @@
 package couch.util;
 
 import java.net.URL;
-import java.util.Arrays;
+import java.util.Map;
 import java.util.HashMap;
+import java.util.Arrays;
 import java.lang.IllegalArgumentException;
 import javax.xml.bind.DatatypeConverter;
 
-import org.json.JSONObject;
+import org.json.*;
 
 public final class Util
 {
-    public static HashMap<String, Object> map(Object... args) throws IllegalArgumentException {
+    public static HashMap<String, Object> param(Map param) {
+        if (param == null) {
+            param = Util.map();
+        }
+        return (HashMap) param;
+    }
+
+    public static HashMap<String, Object> paramList(Object... args) throws IllegalArgumentException {
         int argc = args.length;
         if (argc % 2 != 0) {
             throw new IllegalArgumentException("Wrong args count!");
@@ -96,5 +104,9 @@ public final class Util
         }
 
         return ret;
+    }
+
+    public static HashMap<String, Object> map() {
+        return new HashMap<String, Object>();
     }
 }
