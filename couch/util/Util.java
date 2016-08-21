@@ -103,4 +103,8 @@ public final class Util
     public static HashMap<String, Object> map() {
         return new HashMap<String, Object>();
     }
+
+    public static void dump(Object arg) {
+        System.out.println(arg);
+    }
 }
