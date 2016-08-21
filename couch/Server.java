@@ -26,4 +26,8 @@ public class Server
     public String version() throws Exception {
         return (String) this.info().get("version");
     }
+
+    public JSONObject[] getActiveTasks() throws Exception {
+        return (JSONObject[]) this.client.get("/_active_tasks", null, null).getBodyData();
+    }
 }
