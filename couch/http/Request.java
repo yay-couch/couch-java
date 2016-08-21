@@ -49,9 +49,9 @@ public class Request extends Stream
 
     public Request setMethod(String method) {
         this.method = method.toUpperCase();
-        if (this.method != Request.METHOD_HEAD
-            && this.method != Request.METHOD_GET
-            && this.method != Request.METHOD_POST
+        if (!this.method.equals(Request.METHOD_HEAD)
+            && !this.method.equals(Request.METHOD_GET)
+            && !this.method.equals(Request.METHOD_POST)
         ) {
             this.setHeader("X-HTTP-Method-Override", this.method);
         }
