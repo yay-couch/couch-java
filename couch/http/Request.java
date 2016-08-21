@@ -75,7 +75,7 @@ public class Request extends Stream
     }
 
     public String send() throws IOException {
-        URL url = Util.urlParse(this.uri);
+        URL url = Util.parseUrl(this.uri);
         Socket sock = null;
         IOException err = null;
         String send = "", recv = "";
@@ -136,7 +136,7 @@ public class Request extends Stream
     }
 
     public String toString() {
-        URL url = Util.urlParse(this.uri);
+        URL url = Util.parseUrl(this.uri);
 
         return super.toString(String.format("%s %s?%s HTTP/%s\r\n",
             this.method, url.getPath(), Util.ifNull(url.getQuery(), ""), this.httpVersion));

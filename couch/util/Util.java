@@ -30,7 +30,7 @@ public final class Util
         return map;
     }
 
-    public static URL urlParse(String url) throws IllegalArgumentException {
+    public static URL parseUrl(String url) throws IllegalArgumentException {
         if (url == "") {
             throw new IllegalArgumentException("No valid URL given!");
         }
