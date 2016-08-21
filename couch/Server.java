@@ -14,4 +14,8 @@ public class Server
     public Server(Client client) {
         this.client = client;
     }
+
+    public Boolean ping() throws Exception {
+        return (200 == this.client.head("/", null, null).getStatusCode());
+    }
 }
