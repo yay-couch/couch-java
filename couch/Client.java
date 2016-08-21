@@ -21,6 +21,21 @@ public class Client
 
     public Client(Couch couch) {
         this.couch = couch;
+
+        Map config = couch.getConfig();
+        if (config.containsKey("host")) {
+            this.host = (String) config.get("host");
+        }
+        if (config.containsKey("port")) {
+            this.port = (int) config.get("port");
+        }
+
+        if (config.containsKey("username")) {
+            this.username = (String) config.get("username");
+        }
+        if (config.containsKey("password")) {
+            this.password = (String) config.get("password");
+        }
     }
 
     public Couch getCouch() {
