@@ -28,7 +28,7 @@ abstract class Stream
     public Object getBodyData()
     {
         Object bodyData = null;
-        if (this.getHeader("Content-Type").contains("application/json")) {
+        if (this.getHeader("Content-Type").equals("application/json")) {
             String body = (String) Util.ifNull(this.body, "");
             try {
                 bodyData = Util.jsonDecode(body);
