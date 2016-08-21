@@ -18,4 +18,8 @@ public class Server
     public Boolean ping() throws Exception {
         return (200 == this.client.head("/", null, null).getStatusCode());
     }
+
+    public JSONObject info() throws Exception {
+        return (JSONObject) this.client.get("/", null, null).getBodyData();
+    }
 }
