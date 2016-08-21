@@ -66,8 +66,7 @@ public class Client
         return this.response;
     }
 
-    public Response request(String uri, Object uriParams, Object body,
-            HashMap<String, String> headers) throws Exception {
+    public Response request(String uri, Object uriParams, Object body, HashMap<String, String> headers) throws Exception {
         Pattern pattern = Pattern.compile("^([A-Z]+)\\s+(/.*)");
         Matcher matcher = pattern.matcher(uri);
         if (!matcher.find()) {
@@ -115,5 +114,29 @@ public class Client
         }
 
         return this.response;
+    }
+
+    public Response head(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+        return this.request(Request.METHOD_HEAD +" /"+ uri, uriParams, null, headers);
+    }
+
+    public Response get(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+        return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, headers);
+    }
+
+    public Response post(String uri, Object uriParams, Object body, HashMap<String, String> headers) throws Exception {
+        return this.request(Request.METHOD_POST +" /"+ uri, uriParams, body, headers);
+    }
+
+    public Response put(String uri, Object uriParams, Object body, HashMap<String, String> headers) throws Exception {
+        return this.request(Request.METHOD_PUT +" /"+ uri, uriParams, body, headers);
+    }
+
+    public Response delete(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+        return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, headers);
+    }
+
+    public Response copy(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+        return this.request(Request.METHOD_COPY +" /"+ uri, uriParams, null, headers);
     }
 }
