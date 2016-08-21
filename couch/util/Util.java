@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Arrays;
-import java.lang.IllegalArgumentException;
 import javax.xml.bind.DatatypeConverter;
 
 import org.json.*;
@@ -18,10 +17,10 @@ public final class Util
         return (HashMap) param;
     }
 
-    public static HashMap<String, Object> paramList(Object... args) throws IllegalArgumentException {
+    public static HashMap<String, Object> paramList(Object... args) throws Exception {
         int argc = args.length;
         if (argc % 2 != 0) {
-            throw new IllegalArgumentException("Wrong args count!");
+            throw new Exception("Wrong args count!");
         }
         HashMap<String, Object> map = new HashMap<String, Object>();
         for (int i = 1; i < argc; i += 2) {
@@ -30,9 +29,9 @@ public final class Util
         return map;
     }
 
-    public static URL parseUrl(String url) throws IllegalArgumentException {
+    public static URL parseUrl(String url) throws Exception {
         if (url == "") {
-            throw new IllegalArgumentException("No valid URL given!");
+            throw new Exception("No valid URL given!");
         }
         if (!url.matches("^https?://(.*)")) {
             url = "http://"+ url;
