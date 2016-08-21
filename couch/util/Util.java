@@ -13,7 +13,7 @@ public final class Util
 {
     public static HashMap<String, Object> param(Map param) {
         if (param == null) {
-            param = Util.map();
+            param = map();
         }
         return (HashMap) param;
     }
@@ -34,11 +34,9 @@ public final class Util
         if (url == "") {
             throw new IllegalArgumentException("No valid URL given!");
         }
-
         if (!url.matches("^https?://(.*)")) {
             url = "http://"+ url;
         }
-
         try {
             return new URL(url);
         } catch (Exception e) {
@@ -76,12 +74,10 @@ public final class Util
         if (len == 0) {
             return "";
         }
-
         StringBuilder out = new StringBuilder();
         for (int i = 0; i < len; i++) {
             out.append(in[i]).append(x);
         }
-
         return out.toString().substring(0, out.length() - 1);
     }
 
@@ -91,7 +87,6 @@ public final class Util
 
     public static HashMap<String, String> parseHeaders(String headers) {
         HashMap<String, String> ret = new HashMap<String, String>();
-
         String[] tmp = headers.split("\r\n");
         if (tmp.length > 0) {
             ret.put("0", tmp[0]);
@@ -102,7 +97,6 @@ public final class Util
                 }
             }
         }
-
         return ret;
     }
 
