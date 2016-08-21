@@ -2,7 +2,9 @@ package couch;
 
 import java.util.Map;
 import java.util.HashMap;
+// import javax.json.JsonArray;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import couch.util.Util;
@@ -15,7 +17,7 @@ public class Server
         this.client = client;
     }
 
-    public Boolean ping() throws Exception {
+    public boolean ping() throws Exception {
         return (200 == this.client.head("/", null, null).getStatusCode());
     }
 
