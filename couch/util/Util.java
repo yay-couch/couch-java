@@ -44,7 +44,7 @@ public final class Util
         }
     }
 
-    public static String jsonEncode(HashMap data) {
+    public static String jsonEncode(Map data) {
         return new JSONObject(data).toString();
     }
 
