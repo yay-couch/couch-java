@@ -124,11 +124,18 @@ public class Request extends Stream
             && this.method != Request.METHOD_HEAD
             && this.method != Request.METHOD_GET
         ) {
-            if (this.getHeader("Content-Type").equals("application/json")) {
-                body = Util.jsonEncode((HashMap) body);
+            String bodyType = body.getClass().getSimpleName();
+            if (bodyType.equals("String")) {
+                this.body = Util.quote((String) body);
+            } else if (bodyType.matches("(?i)(int.*|float|short|long|double)")) {
+                this.body = String.valueOf(body);
+            } else {
+                if (this.getHeader("Content-Type").equals("application/json")) {
+                    this.body = Util.jsonEncode(body);
+                }
             }
-            this.body = ""+ body;
-            this.setHeader("Content-Length", (""+ body).length());
+
+            this.setHeader("Content-Length", ""+ (""+ this.body).length());
         }
 
         return this;
