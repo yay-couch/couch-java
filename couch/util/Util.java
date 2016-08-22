@@ -106,4 +106,8 @@ public final class Util
     public static void dump(Object arg) {
         System.out.println(arg);
     }
+
+    public static String quote(String in) {
+        return in.replaceAll("\"", "\\\\\"");
+    }
 }
