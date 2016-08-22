@@ -58,7 +58,7 @@ abstract class Stream
     {
         body = (String) Util.ifNull(body, Util.ifNull(this.body, ""));
         try {
-            JSONObject bodyJson = Util.jsonDecode(body);
+            JSONObject bodyJson = Util.toJsonObject(body);
             String error = (String) bodyJson.get("error"),
                    reason = (String) bodyJson.get("reason");
             this.error = String.format("Stream Error >> error: '%s', reason: '%s'", error, reason);
