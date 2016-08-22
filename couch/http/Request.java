@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.net.URL;
 import java.net.Socket;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -74,10 +73,10 @@ public class Request extends Stream
         return this;
     }
 
-    public String send() throws IOException {
+    public String send() throws Exception {
         URL url = Util.parseUrl(this.uri);
         Socket sock = null;
-        IOException err = null;
+        Exception err = null;
         String send = "", recv = "";
 
         send += String.format("%s %s?%s HTTP/%s\r\n",
@@ -105,7 +104,7 @@ public class Request extends Stream
                 recv += String.valueOf((char) ch);
             }
             socket.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             err = e;
         }
 
@@ -125,7 +124,7 @@ public class Request extends Stream
             && this.method != Request.METHOD_HEAD
             && this.method != Request.METHOD_GET
         ) {
-            if (this.getHeader("Content-Type").equals("application/json")) {
+            if (this.getHeader("Content-Type") == "application/json") {
                 body = Util.jsonEncode((HashMap) body);
             }
             this.body = ""+ body;
@@ -136,7 +135,10 @@ public class Request extends Stream
     }
 
     public String toString() {
-        URL url = Util.parseUrl(this.uri);
+        URL url = null;
+        try {
+            url = Util.parseUrl(this.uri);
+        } catch (Exception e) {}
 
         return super.toString(String.format("%s %s?%s HTTP/%s\r\n",
             this.method, url.getPath(), Util.ifNull(url.getQuery(), ""), this.httpVersion));
