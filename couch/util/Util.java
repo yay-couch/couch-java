@@ -110,4 +110,8 @@ public final class Util
     public static String quote(String in) {
         return in.replaceAll("\"", "\\\\\"");
     }
+
+    public static String quoteEncode(String in) {
+        return in.replaceAll("\"", "%22");
+    }
 }
