@@ -31,7 +31,7 @@ abstract class Stream
         if (this.getHeader("Content-Type").equals("application/json")) {
             String body = (String) Util.ifNull(this.body, "");
             try {
-                bodyData = Util.jsonDecode(body);
+                bodyData = Util.toJsonObject(body);
             } catch (Exception e) {}
         }
 
