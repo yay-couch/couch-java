@@ -43,12 +43,25 @@ public final class Util
         }
     }
 
-    public static String jsonEncode(Map data) {
+    public static String toJsonString(Object data) {
         return new JSONObject(data).toString();
     }
 
-    public static JSONObject jsonDecode(String data) {
+    public static JSONObject toJsonObject(String data) {
         return new JSONObject(data) {
+            @Override
+            public Object get(String key) { // skip exception
+                try {
+                    return super.get(key);
+                } catch (JSONException e) {
+                    return null;
+                }
+            }
+        };
+    }
+
+    public static JSONArray toJsonArray(String data) {
+        return new JSONArray(data) {
             @Override
             public Object get(String key) { // skip exception
                 try {
