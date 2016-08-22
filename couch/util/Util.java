@@ -63,7 +63,7 @@ public final class Util
     public static JSONArray toJsonArray(String data) {
         return new JSONArray(data) {
             @Override
-            public Object get(String key) { // skip exception
+            public Object get(int key) { // skip exception
                 try {
                     return super.get(key);
                 } catch (JSONException e) {
