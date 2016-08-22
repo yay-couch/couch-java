@@ -31,7 +31,7 @@ public class Couch
         this.config = config;
 
         boolean debug = (boolean) this.config.get("debug");
-        if (debug != null) {
+        if (debug) {
             this.DEBUG = debug;
         }
     }
