@@ -25,18 +25,18 @@ abstract class Stream
         return this.body;
     }
 
-    public Object getBodyData()
-    {
-        Object bodyData = null;
-        if (this.getHeader("Content-Type").equals("application/json")) {
-            String body = (String) Util.ifNull(this.body, "");
-            try {
-                bodyData = Util.toJsonObject(body);
-            } catch (Exception e) {}
-        }
+    // public Object getBodyData()
+    // {
+    //     Object bodyData = null;
+    //     if (this.getHeader("Content-Type").equals("application/json")) {
+    //         String body = (String) Util.ifNull(this.body, "");
+    //         try {
+    //             bodyData = Util.toJsonObject(body);
+    //         } catch (Exception e) {}
+    //     }
 
-        return bodyData;
-    }
+    //     return bodyData;
+    // }
 
     public void setHeader(String key, Object value) {
         if (value == null) {

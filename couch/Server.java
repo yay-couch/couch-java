@@ -24,7 +24,7 @@ public class Server
     }
 
     public JSONObject info() throws Exception {
-        return (JSONObject) this.client.get("/", null, null).getBodyData();
+        return toJsonObject((String) this.client.get("/", null, null).getBody());
     }
 
     public String version() throws Exception {
