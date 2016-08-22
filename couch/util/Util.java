@@ -47,10 +47,10 @@ public final class Util
         return new JSONObject(data).toString();
     }
 
-    public static JSONObject toJsonObject(String data) {
-        return new JSONObject(data) {
+    public static JSONArray toJsonArray(String data) {
+        return new JSONArray(data) {
             @Override
-            public Object get(String key) { // skip exception
+            public Object get(int key) { // skip exception
                 try {
                     return super.get(key);
                 } catch (JSONException e) {
@@ -60,10 +60,10 @@ public final class Util
         };
     }
 
-    public static JSONArray toJsonArray(String data) {
-        return new JSONArray(data) {
+    public static JSONObject toJsonObject(String data) {
+        return new JSONObject(data) {
             @Override
-            public Object get(int key) { // skip exception
+            public Object get(String key) { // skip exception
                 try {
                     return super.get(key);
                 } catch (JSONException e) {
