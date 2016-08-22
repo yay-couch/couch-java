@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import couch.util.Util;
+import static couch.util.Util.toJsonArray;
+import static couch.util.Util.toJsonObject;
 
 public class Server
 {
@@ -29,7 +31,11 @@ public class Server
         return (String) this.info().get("version");
     }
 
-    public JSONObject[] getActiveTasks() throws Exception {
-        return (JSONObject[]) this.client.get("/_active_tasks", null, null).getBodyData();
+    public JSONArray getActiveTasks() throws Exception {
+        return toJsonArray((String) this.client.get("/_active_tasks", null, null).getBody());
+    }
+
+    public JSONArray getAllDatabases() throws Exception {
+        return toJsonArray((String) this.client.get("/_all_dbs", null, null).getBody());
     }
 }
