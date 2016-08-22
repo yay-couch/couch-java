@@ -125,7 +125,7 @@ public class Request extends Stream
             && this.method != Request.METHOD_HEAD
             && this.method != Request.METHOD_GET
         ) {
-            if (this.getHeader("Content-Type") == "application/json") {
+            if (this.getHeader("Content-Type").equals("application/json")) {
                 body = Util.jsonEncode((HashMap) body);
             }
             this.body = ""+ body;
