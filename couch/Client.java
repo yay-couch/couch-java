@@ -66,7 +66,7 @@ public class Client
         return this.response;
     }
 
-    public Response request(String uri, Object uriParams, Object body, HashMap<String, String> headers) throws Exception {
+    public Response request(String uri, Object uriParams, Object body, HashMap<String, Object> headers) throws Exception {
         Pattern pattern = Pattern.compile("^([A-Z]+)\\s+(/.*)");
         Matcher matcher = pattern.matcher(uri);
         if (!matcher.find()) {
@@ -85,8 +85,8 @@ public class Client
             .setBody(body);
 
         if (headers != null) {
-            for (Map.Entry header : headers.entrySet()) {
-                this.request.setHeader((String) header.getKey(), header.getValue());
+            for (Map.Entry<String, Object> header : headers.entrySet()) {
+                this.request.setHeader(header.getKey(), header.getValue());
             }
         }
 
@@ -94,11 +94,11 @@ public class Client
         if (result != "") {
             String[] tmp = result.split("\\r\\n\\r\\n", 2);
             if (tmp.length == 2) {
-                headers = Util.parseHeaders(tmp[0]);
-                if (headers.size() > 0) {
-                    for (Map.Entry header : headers.entrySet()) {
-                        String key = (String) header.getKey();
-                        String value = (String) header.getValue();
+                HashMap<String, String> headerz = Util.parseHeaders(tmp[0]);
+                if (headerz.size() > 0) {
+                    for (Map.Entry<String, String> header : headerz.entrySet()) {
+                        String key = header.getKey();
+                        String value = header.getValue();
                         if (key == "0") {
                             this.response.setStatus(value);
                         }
@@ -116,27 +116,27 @@ public class Client
         return this.response;
     }
 
-    public Response head(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+    public Response head(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_HEAD +" /"+ uri, uriParams, null, headers);
     }
 
-    public Response get(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+    public Response get(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, headers);
     }
 
-    public Response post(String uri, Object uriParams, Object body, HashMap<String, String> headers) throws Exception {
+    public Response post(String uri, Object uriParams, Object body, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_POST +" /"+ uri, uriParams, body, headers);
     }
 
-    public Response put(String uri, Object uriParams, Object body, HashMap<String, String> headers) throws Exception {
+    public Response put(String uri, Object uriParams, Object body, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_PUT +" /"+ uri, uriParams, body, headers);
     }
 
-    public Response delete(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+    public Response delete(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, headers);
     }
 
-    public Response copy(String uri, Object uriParams, HashMap<String, String> headers) throws Exception {
+    public Response copy(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_COPY +" /"+ uri, uriParams, null, headers);
     }
 }
