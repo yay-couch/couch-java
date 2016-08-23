@@ -29,9 +29,8 @@ class TestServer
         // dump(server.getLogs(null));
         // dump(server.getStats(""));
         // dump(server.getStats("couchdb/request_time"));
-        dump(server.getUuid());
+        // dump(server.getUuid());
         // dump(server.getUuids(3)[0]);
-
 
         // dump(Arrays.asList(server.getActiveTasks().getClass().getDeclaredMethods()));
     }
