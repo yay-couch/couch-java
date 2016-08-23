@@ -35,6 +35,10 @@ public class Query
     }
 
     public String toString() {
+        return this.toString("UTF-8");
+    }
+
+    public String toString(String charset) {
         if (this.data == null) {
             return "";
         }
@@ -49,24 +53,25 @@ public class Query
             return "";
         }
 
-        for (Map.Entry me : this.data.entrySet()) {
-            String key = (String) me.getKey();
-            Object value = (Object) me.getValue();
+        for (Map.Entry<String, Object> me : this.data.entrySet()) {
+            String key = me.getKey();
+            Object value = me.getValue();
             if (value == null) {
                 continue;
             }
-            if (value instanceof Integer) {
+            if (value instanceof Integer || value instanceof Boolean) {
                 value = String.valueOf(value);
-            } else if (value instanceof Boolean) {
-                value = String.valueOf(value).toLowerCase();
+            } else if (value instanceof String[]) {
+                value = String.format("[\"%s\"]", Util.implode("\",\"", (String[]) value));
             }
-            this.dataString += URLEncoder.encode(key) +"="+ URLEncoder.encode((String) value) + "&";
+
+            try {
+                this.dataString += URLEncoder.encode(key, charset) +"="+
+                                   URLEncoder.encode((String) value, charset) + "&";
+            } catch (Exception e) {}
         }
 
-        int len = this.dataString.length();
-        if (len != 0) {
-            this.dataString = this.dataString.substring(0, len - 1);
-        }
+        this.dataString = this.dataString.replaceAll("&$", "");
 
         this.dataString = this.dataString.replace("%5B", "[").replace("%5D", "]");
 
