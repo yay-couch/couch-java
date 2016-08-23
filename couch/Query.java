@@ -69,7 +69,7 @@ public class Query
         }
 
         this.dataString = this.dataString.replaceAll("&$", "")
-            .replace("%5B", "[").replace("%5D", "]");
+            .replace("%5B", "[").replace("%5D", "]").replace("%2C", ",");
 
         return this.dataString;
     }
