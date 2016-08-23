@@ -32,6 +32,12 @@ class TestServer
         // dump(server.getUuid());
         // dump(server.getUuids(3)[0]);
 
+        // Query q = new Query();
+        // q.set("foo", 1);
+        // q.set("bar", true);
+        // q.set("baz", new String[]{"x","y","z"});
+        // dump(q.toString());
+
         // dump(Arrays.asList(server.getActiveTasks().getClass().getDeclaredMethods()));
     }
 }
