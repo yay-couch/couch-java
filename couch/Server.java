@@ -46,4 +46,8 @@ public class Server
     public String getLogs(Object query) throws Exception {
         return (String) this.client.get("/_log", query, null).getBody();
     }
+
+    public JSONObject getStats(String path) throws Exception {
+        return toJsonObject((String) this.client.get("/_stats/"+ Util.ifNull(path, ""), null, null).getBody());
+    }
 }
