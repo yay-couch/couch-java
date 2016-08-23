@@ -60,7 +60,7 @@ public class Server
     }
 
     public String[] getUuids(int count) throws Exception {
-        HashMap query = Util.paramList("count", count);
+        Map query = Util.paramList("count", count);
         String[] uuids = new String[count];
         JSONObject data = toJsonObject((String) this.client.get("/_uuids", query, null).getBody());
         if (data.has("uuids")) {
