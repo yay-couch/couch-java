@@ -81,16 +81,16 @@ public final class Util
         return new String(DatatypeConverter.parseBase64Binary(data));
     }
 
-    public static String implode(String x, String[] in) {
+    public static String implode(String delimiter, String[] in) {
         int len = in.length;
         if (len == 0) {
             return "";
         }
         StringBuilder out = new StringBuilder();
         for (int i = 0; i < len; i++) {
-            out.append(in[i]).append(x);
+            out.append(in[i]).append(delimiter);
         }
-        return out.toString().substring(0, out.length() - 1);
+        return out.toString().substring(0, out.length() - delimiter.length());
     }
 
     public static Object ifNull(Object a, Object b) {
