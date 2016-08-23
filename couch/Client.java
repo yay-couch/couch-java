@@ -11,7 +11,7 @@ import couch.http.Response;
 
 public class Client
 {
-    private Couch couch;
+    private final Couch couch;
     private String host = "localhost";
     private int port = 5984;
     private String username;

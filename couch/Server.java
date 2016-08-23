@@ -13,7 +13,7 @@ import static couch.util.Util.toJsonObject;
 
 public class Server
 {
-    private Client client;
+    private final Client client;
 
     public Server(Client client) {
         this.client = client;

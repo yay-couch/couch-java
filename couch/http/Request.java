@@ -20,7 +20,7 @@ public class Request extends Stream
     public static final String METHOD_PUT    = "PUT";
     public static final String METHOD_DELETE = "DELETE";
     public static final String METHOD_COPY   = "COPY";
-    private Client client;
+    private final Client client;
     private String method;
     private String uri;
 
