@@ -77,7 +77,7 @@ public class Client
         this.response = new Response();
 
         uri = String.format("%s:%s/%s",
-            this.host, this.port, matcher.group(2).replaceAll("\\s+|/+", ""));
+            this.host, this.port, matcher.group(2).replaceAll("^[\\s/]+|[\\s/]+$", ""));
 
         this.request
             .setMethod(matcher.group(1))
