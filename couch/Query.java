@@ -27,6 +27,16 @@ public class Query
         return this.data.get(key);
     }
 
+    public Query skip(int num) {
+        this.data.put("skip", num);
+        return this;
+    }
+
+    public Query limit(int num) {
+        this.data.put("limit", num);
+        return this;
+    }
+
     public HashMap<String, Object> toArray() {
         return this.data;
     }
@@ -36,17 +46,11 @@ public class Query
     }
 
     public String toString(String charset) {
-        if (this.data == null) {
-            return "";
-        }
-
         if (this.dataString != "") {
             return this.dataString;
         }
 
-        int i = 0;
-        int size = this.data.size();
-        if (size == 0) {
+        if (this.data.size() == 0) {
             return "";
         }
 
@@ -72,15 +76,5 @@ public class Query
             .replace("%5B", "[").replace("%5D", "]").replace("%2C", ",");
 
         return this.dataString;
-    }
-
-    public Query skip(int num) {
-        this.data.put("skip", num);
-        return this;
-    }
-
-    public Query limit(int num) {
-        this.data.put("limit", num);
-        return this;
     }
 }
