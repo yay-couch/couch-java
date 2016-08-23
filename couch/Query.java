@@ -71,9 +71,8 @@ public class Query
             } catch (Exception e) {}
         }
 
-        this.dataString = this.dataString.replaceAll("&$", "");
-
-        this.dataString = this.dataString.replace("%5B", "[").replace("%5D", "]");
+        this.dataString = this.dataString.replaceAll("&$", "")
+            .replace("%5B", "[").replace("%5D", "]");
 
         return this.dataString;
     }
