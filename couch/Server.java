@@ -2,7 +2,7 @@ package couch;
 
 import java.util.Map;
 import java.util.HashMap;
-// import javax.json.JsonArray;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,5 +49,26 @@ public class Server
 
     public JSONObject getStats(String path) throws Exception {
         return toJsonObject((String) this.client.get("/_stats/"+ Util.ifNull(path, ""), null, null).getBody());
+    }
+
+    public String getUuid() throws Exception {
+        try {
+            return (String) this.getUuids(1)[0];
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String[] getUuids(int count) throws Exception {
+        HashMap query = Util.paramList("count", count);
+        String[] uuids = new String[count];
+        JSONObject data = toJsonObject((String) this.client.get("/_uuids", query, null).getBody());
+        if (data.has("uuids")) {
+            List uuidsList = ((JSONArray) data.get("uuids")).toList();
+            for (int i = 0; i < uuidsList.size(); i++) {
+                uuids[i] = (String) uuidsList.get(i);
+            }
+        }
+        return uuids;
     }
 }
