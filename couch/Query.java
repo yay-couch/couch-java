@@ -1,8 +1,8 @@
 package couch;
 
+import java.net.URLEncoder;
 import java.util.Map;
 import java.util.HashMap;
-import java.net.URLEncoder;
 
 import couch.util.Util;
 
