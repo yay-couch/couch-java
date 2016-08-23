@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 public class Response extends Stream
 {
     private String status;
-    private Integer statusCode = 0;
+    private int statusCode = 0;
     private String statusText = "";
 
     public Response() {
@@ -32,10 +32,10 @@ public class Response extends Stream
         return this.status;
     }
 
-    public void setStatusCode(Integer statusCode) {
+    public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
-    public Integer getStatusCode() {
+    public int getStatusCode() {
         return this.statusCode;
     }
 
