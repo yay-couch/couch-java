@@ -42,4 +42,8 @@ public class Server
     public JSONObject getDatabaseUpdates(Object query) throws Exception {
         return toJsonObject((String) this.client.get("/_db_updates", query, null).getBody());
     }
+
+    public String getLogs(Object query) throws Exception {
+        return (String) this.client.get("/_log", query, null).getBody();
+    }
 }
