@@ -38,4 +38,8 @@ public class Server
     public JSONArray getAllDatabases() throws Exception {
         return toJsonArray((String) this.client.get("/_all_dbs", null, null).getBody());
     }
+
+    public JSONObject getDatabaseUpdates(Object query) throws Exception {
+        return toJsonObject((String) this.client.get("/_db_updates", query, null).getBody());
+    }
 }
