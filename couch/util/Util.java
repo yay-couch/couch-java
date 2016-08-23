@@ -10,11 +10,11 @@ import org.json.*;
 
 public final class Util
 {
-    public static HashMap<String, Object> param(Map param) {
+    public static HashMap<String, Object> param(HashMap<String, Object> param) {
         if (param == null) {
             param = map();
         }
-        return (HashMap) param;
+        return param;
     }
 
     public static HashMap<String, Object> paramList(Object... args) throws Exception {
