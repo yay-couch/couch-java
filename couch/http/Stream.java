@@ -3,9 +3,11 @@ package couch.http;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import couch.util.Util;
+import couch.util.Json;
 
 abstract class Stream
 {
@@ -25,18 +27,10 @@ abstract class Stream
         return this.body;
     }
 
-    // public Object getBodyData()
-    // {
-    //     Object bodyData = null;
-    //     if (this.getHeader("Content-Type").equals("application/json")) {
-    //         String body = (String) Util.ifNull(this.body, "");
-    //         try {
-    //             bodyData = Util.jsonObject(body);
-    //         } catch (Exception e) {}
-    //     }
-
-    //     return bodyData;
-    // }
+    public Json getBodyData()
+    {
+        return new Json((String) this.getBody());
+    }
 
     public void setHeader(String key, Object value) {
         if (value == null) {
