@@ -79,4 +79,8 @@ public class Server
         }
         return jsonObject((String) this.client.post("/_replicate", null, body, null).getBody());
     }
+
+    public boolean restart() throws Exception {
+       return (202 == this.client.post("/_restart", null, null, null).getStatusCode());
+    }
 }
