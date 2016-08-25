@@ -1,12 +1,12 @@
 package couch.util;
 
 import java.net.URL;
-import java.util.Map;
 import java.util.HashMap;
-import java.util.Arrays;
 import javax.xml.bind.DatatypeConverter;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public final class Util
 {
@@ -44,7 +44,7 @@ public final class Util
     }
 
     public static String toJsonString(Object data) {
-        return new JSONObject(data).toString();
+        return JSONObject.valueToString(data);
     }
 
     public static JSONArray toJsonArray(String data) {
