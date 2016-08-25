@@ -31,6 +31,9 @@ class TestServer
         // dump(server.getStats("couchdb/request_time"));
         // dump(server.getUuid());
         // dump(server.getUuids(3)[0]);
+        dump(server.replicate(Util.paramList("source", "foo", "target", "foo_replicate")));
+
+
 
         // Query q = new Query();
         // q.set("foo", 1);
