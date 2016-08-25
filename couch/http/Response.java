@@ -48,7 +48,7 @@ public class Response extends Stream
 
     public void setBody(Object body) {
         if (body != null) {
-            this.body = body;
+            this.body = (String) body;
         }
     }
 
