@@ -71,4 +71,12 @@ public class Server
         }
         return uuids;
     }
+
+    public JSONObject replicate(Map body) throws Exception {
+        body = Util.param(body);
+        if (body.get("source") == null || body.get("target") == null) {
+            throw new Exception("Both source & target required!");
+        }
+        return toJsonObject((String) this.client.post("/_replicate", null, body, null).getBody());
+    }
 }
