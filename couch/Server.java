@@ -64,7 +64,7 @@ public class Server
         String[] uuids = new String[count];
         JSONObject data = toJsonObject((String) this.client.get("/_uuids", query, null).getBody());
         if (data.has("uuids")) {
-            List uuidsList = ((JSONArray) data.get("uuids")).toList();
+            List<Object> uuidsList = ((JSONArray) data.get("uuids")).toList();
             for (int i = 0; i < uuidsList.size(); i++) {
                 uuids[i] = (String) uuidsList.get(i);
             }
