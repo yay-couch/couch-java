@@ -8,8 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import couch.util.Util;
-import static couch.util.Util.jsonArray;
-import static couch.util.Util.jsonObject;
 
 public class Server
 {
@@ -24,7 +22,7 @@ public class Server
     }
 
     public JSONObject info() throws Exception {
-        return jsonObject((String) this.client.get("/", null, null).getBody());
+        return this.client.get("/", null, null).getBodyData().jsonObject();
     }
 
     public String version() throws Exception {
@@ -32,15 +30,15 @@ public class Server
     }
 
     public JSONArray getActiveTasks() throws Exception {
-        return jsonArray((String) this.client.get("/_active_tasks", null, null).getBody());
+        return this.client.get("/_active_tasks", null, null).getBodyData().jsonArray();
     }
 
     public JSONArray getAllDatabases() throws Exception {
-        return jsonArray((String) this.client.get("/_all_dbs", null, null).getBody());
+        return this.client.get("/_all_dbs", null, null).getBodyData().jsonArray();
     }
 
     public JSONObject getDatabaseUpdates(Object query) throws Exception {
-        return jsonObject((String) this.client.get("/_db_updates", query, null).getBody());
+        return this.client.get("/_db_updates", query, null).getBodyData().jsonObject();
     }
 
     public String getLogs(Object query) throws Exception {
@@ -48,7 +46,7 @@ public class Server
     }
 
     public JSONObject getStats(String path) throws Exception {
-        return jsonObject((String) this.client.get("/_stats/"+ Util.ifNull(path, ""), null, null).getBody());
+        return this.client.get("/_stats/"+ Util.ifNull(path, ""), null, null).getBodyData().jsonObject();
     }
 
     public String getUuid() {
@@ -62,7 +60,7 @@ public class Server
     public String[] getUuids(int count) throws Exception {
         Map query = Util.paramList("count", count);
         String[] uuids = new String[count];
-        JSONObject data = jsonObject((String) this.client.get("/_uuids", query, null).getBody());
+        JSONObject data = this.client.get("/_uuids", query, null).getBodyData().jsonObject();
         if (data.has("uuids")) {
             List<Object> uuidsList = ((JSONArray) data.get("uuids")).toList();
             for (int i = 0; i < uuidsList.size(); i++) {
@@ -77,7 +75,7 @@ public class Server
         if (body.get("source") == null || body.get("target") == null) {
             throw new Exception("Both source & target required!");
         }
-        return jsonObject((String) this.client.post("/_replicate", null, body, null).getBody());
+        return this.client.post("/_replicate", null, body, null).getBodyData().jsonObject();
     }
 
     public boolean restart() throws Exception {
