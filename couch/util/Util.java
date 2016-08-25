@@ -1,6 +1,7 @@
 package couch.util;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.HashMap;
 import javax.xml.bind.DatatypeConverter;
 
@@ -10,11 +11,11 @@ import org.json.JSONException;
 
 public final class Util
 {
-    public static HashMap<String, Object> param(HashMap<String, Object> param) {
+    public static HashMap<String, Object> param(Map param) {
         if (param == null) {
             param = map();
         }
-        return param;
+        return (HashMap<String, Object>) param;
     }
 
     public static HashMap<String, Object> paramList(Object... args) throws Exception {
