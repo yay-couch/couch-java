@@ -31,7 +31,7 @@ abstract class Stream
     //     if (this.getHeader("Content-Type").equals("application/json")) {
     //         String body = (String) Util.ifNull(this.body, "");
     //         try {
-    //             bodyData = Util.toJsonObject(body);
+    //             bodyData = Util.jsonObject(body);
     //         } catch (Exception e) {}
     //     }
 
@@ -58,7 +58,7 @@ abstract class Stream
     {
         body = (String) Util.ifNull(body, Util.ifNull(this.body, ""));
         try {
-            JSONObject bodyJson = Util.toJsonObject(body);
+            JSONObject bodyJson = Util.jsonObject(body);
             String error = (String) bodyJson.get("error"),
                    reason = (String) bodyJson.get("reason");
             this.error = String.format("Stream Error >> error: '%s', reason: '%s'", error, reason);

@@ -69,13 +69,13 @@ class Test
         // String js = Util.toJsonString(map);
         // System.out.println(js);
 
-        // JSONObject jo = Util.toJsonObject(js);
+        // JSONObject jo = Util.jsonObject(js);
         // System.out.println(jo.get("name"));
 
         // JSONObject js = new JSONObject(map);
         // System.out.println(js.get("name") == 1);
 
-        // Json json = Util.toJsonObject("{\"foo\":123}");
+        // Json json = Util.jsonObject("{\"foo\":123}");
         // System.out.println(json.get("foo"));
 
         // URL url = Util.parseUrl("localhost/foo");

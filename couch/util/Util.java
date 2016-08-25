@@ -44,11 +44,11 @@ public final class Util
         }
     }
 
-    public static String toJsonString(Object data) {
+    public static String jsonString(Object data) {
         return JSONObject.valueToString(data);
     }
 
-    public static JSONArray toJsonArray(String data) {
+    public static JSONArray jsonArray(String data) {
         return new JSONArray(data) {
             @Override
             public Object get(int key) { // skip exception
@@ -61,7 +61,7 @@ public final class Util
         };
     }
 
-    public static JSONObject toJsonObject(String data) {
+    public static JSONObject jsonObject(String data) {
         return new JSONObject(data) {
             @Override
             public Object get(String key) { // skip exception

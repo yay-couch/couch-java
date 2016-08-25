@@ -131,7 +131,7 @@ public class Request extends Stream
                 this.body = String.valueOf(body);
             } else {
                 if (this.getHeader("Content-Type").equals("application/json")) {
-                    this.body = Util.toJsonString(body);
+                    this.body = Util.jsonString(body);
                 }
             }
 
