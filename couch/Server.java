@@ -51,7 +51,7 @@ public class Server
         return toJsonObject((String) this.client.get("/_stats/"+ Util.ifNull(path, ""), null, null).getBody());
     }
 
-    public String getUuid() throws Exception {
+    public String getUuid() {
         try {
             return (String) this.getUuids(1)[0];
         } catch (Exception e) {
