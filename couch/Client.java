@@ -120,6 +120,9 @@ public class Client
         return this.request(Request.METHOD_HEAD +" /"+ uri, uriParams, null, headers);
     }
 
+    public Response get(String uri, Object uriParams) throws Exception {
+        return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, null);
+    }
     public Response get(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, headers);
     }
