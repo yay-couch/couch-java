@@ -12,4 +12,11 @@ public class Database
 {
     private final Client client;
     private final String name;
+
+    public Database(Client client, String name) {
+        this.client = client;
+        this.name = name;
+    }
+
+
 }
