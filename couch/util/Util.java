@@ -128,4 +128,8 @@ public final class Util
     public static String quoteEncode(String in) {
         return in.replaceAll("\"", "%22");
     }
+
+    public static boolean isEmpty(final String in) {
+        return (in == null || in.trim().isEmpty());
+    }
 }
