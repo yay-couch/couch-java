@@ -136,6 +136,9 @@ public class Client
         return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, headers);
     }
 
+    public Response copy(String uri, Object uriParams) throws Exception {
+        return this.request(Request.METHOD_COPY +" /"+ uri, uriParams, null, null);
+    }
     public Response copy(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_COPY +" /"+ uri, uriParams, null, headers);
     }
