@@ -124,6 +124,9 @@ public class Client
         return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, headers);
     }
 
+    public Response post(String uri) throws Exception {
+        return this.request(Request.METHOD_POST +" /"+ uri, null, null, null);
+    }
     public Response post(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_POST +" /"+ uri, uriParams, null, null);
     }
