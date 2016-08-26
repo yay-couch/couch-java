@@ -137,6 +137,9 @@ public class Client
         return this.request(Request.METHOD_POST +" /"+ uri, uriParams, body, headers);
     }
 
+    public Response put(String uri) throws Exception {
+        return this.request(Request.METHOD_PUT +" /"+ uri, null, null, null);
+    }
     public Response put(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_PUT +" /"+ uri, uriParams, null, null);
     }
