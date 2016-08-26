@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import couch.util.Util;
+import couch.http.Response;
 
 public class Server
 {
@@ -106,5 +107,13 @@ public class Server
             throw new Exception("Both section & key required!");
         }
         return (String) this.client.put("/_config/"+ section +"/"+ key, null, value, null).getBody();
+    }
+
+    public String removeConfig(String section, String key) throws Exception {
+        if (Util.isEmpty(section) || Util.isEmpty(key)) {
+            throw new Exception("Both section & key required!");
+        }
+        Response response = this.client.delete("/_config/"+ section +"/"+ key);
+        return response.getStatusCode() == 200 ? (String) response.getBody() : null;
     }
 }
