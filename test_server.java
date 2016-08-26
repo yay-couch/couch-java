@@ -1,9 +1,5 @@
-import couch.Couch;
-import couch.Client;
-import couch.Server;
-import couch.http.Request;
-import couch.http.Response;
-import couch.Query;
+import couch.*;
+import couch.http.*;
 import couch.util.*;
 import static couch.util.Util.dump;
 
@@ -19,8 +15,6 @@ class TestServer
         Couch couch = new Couch(null, true);
         Client client = new Client(couch);
         Server server = new Server(client);
-
-        // dump(client.get("/_config/httpd_design_handlers/_show", null, null));
 
         // dump(server.ping());
         // dump(server.info());
