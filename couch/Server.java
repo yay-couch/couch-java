@@ -97,13 +97,21 @@ public class Server
     }
 
     public JSONObject getConfig() throws Exception {
-        return this.getConfig("", "");
+        return this.client.get("/_config").getBodyData().jsonObject();
     }
     public JSONObject getConfig(String section) throws Exception {
-        return this.getConfig(section, "");
+        return this.client.get("/_config/"+ section).getBodyData().jsonObject();
     }
-    public JSONObject getConfig(String section, String key) throws Exception {
-        return this.client.get("/_config/"+ section +"/"+ key).getBodyData().jsonObject();
+    public String getConfig(String section, String key) throws Exception {
+        Response response = this.client.delete("/_config/"+ section +"/"+ key);
+        String value = null;
+        if (response.getStatusCode() == 200) {
+            value = (String) response.getBody();
+            if (value != null) {
+                value = Util.quoteUnwrap(value.replaceAll("\\\\\"", "\""));
+            }
+        }
+        return value;
     }
 
     public String setConfig(String section, String key, String value) throws Exception {
