@@ -27,7 +27,7 @@ class TestServer
         // dump(server.version());
         // dump(server.getActiveTasks());
         // dump(server.getAllDatabases().get(0));
-        // dump(server.getDatabaseUpdates(null));
+        // dump(server.getDatabaseUpdates());
         // dump(server.getLogs());
         // dump(server.getStats());
         // dump(server.getStats("couchdb/request_time"));
@@ -36,6 +36,8 @@ class TestServer
         // dump(server.replicate(Util.paramList("source", "foo", "target", "foo_replicate")));
         // dump(server.restart());
         // dump(server.getConfig());
+        // dump(server.setConfig("couch", "foo", "The foo!"));
+        // dump(server.removeConfig("couch", "foo"));
 
 
 
