@@ -60,7 +60,7 @@ public class Server
 
     public String getUuid() {
         try {
-            return (String) this.getUuids(1)[0];
+            return this.getUuids(1)[0];
         } catch (Exception e) {
             return null;
         }
