@@ -18,6 +18,10 @@ public class Server
         this.client = client;
     }
 
+    public Client getClient() {
+        return this.client;
+    }
+
     public boolean ping() throws Exception {
         return (200 == this.client.head("/", null, null).getStatusCode());
     }
