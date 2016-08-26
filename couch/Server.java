@@ -82,6 +82,9 @@ public class Server
        return (202 == this.client.post("/_restart", null, null, null).getStatusCode());
     }
 
+    public JSONObject getConfig() throws Exception {
+        return this.getConfig("", "");
+    }
     public JSONObject getConfig(String section) throws Exception {
         return this.getConfig(section, "");
     }
