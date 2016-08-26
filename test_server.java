@@ -32,9 +32,8 @@ class TestServer
         // dump(server.getConfig());
         // dump(server.getConfig("couchdb"));
         // dump(server.getConfig("couchdb", "uuid"));
-        // dump(server.setConfig("couch", "foo", "The foo!"));
-        // dump(server.getConfig("couch", "foo"));
-        // dump(server.removeConfig("couch", "foo"));
+        // dump(server.setConfig("aaa", "foo", "The foo!"));
+        // dump(server.removeConfig("aaa", "foo"));
 
         // Query q = new Query();
         // q.set("foo", 1);
