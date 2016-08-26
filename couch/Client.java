@@ -116,6 +116,9 @@ public class Client
         return this.response;
     }
 
+    public Response head(String uri) throws Exception {
+        return this.request(Request.METHOD_HEAD +" /"+ uri, null, null, null);
+    }
     public Response head(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_HEAD +" /"+ uri, uriParams, null, null);
     }
