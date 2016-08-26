@@ -20,19 +20,22 @@ class TestServer
         Client client = new Client(couch);
         Server server = new Server(client);
 
+        // dump(client.get("/_config/httpd_design_handlers/_show", null, null));
+
         // dump(server.ping());
         // dump(server.info());
         // dump(server.version());
         // dump(server.getActiveTasks());
         // dump(server.getAllDatabases().get(0));
         // dump(server.getDatabaseUpdates(null));
-        // dump(server.getLogs(null));
-        // dump(server.getStats(""));
+        // dump(server.getLogs());
+        // dump(server.getStats());
         // dump(server.getStats("couchdb/request_time"));
         // dump(server.getUuid());
         // dump(server.getUuids(3)[0]);
         // dump(server.replicate(Util.paramList("source", "foo", "target", "foo_replicate")));
         // dump(server.restart());
+        // dump(server.getConfig());
 
 
 
