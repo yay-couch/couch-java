@@ -37,6 +37,9 @@ public class Server
         return this.client.get("/_all_dbs", null, null).getBodyData().jsonArray();
     }
 
+    public JSONObject getDatabaseUpdates() throws Exception {
+        return this.getDatabaseUpdates(null);
+    }
     public JSONObject getDatabaseUpdates(Object query) throws Exception {
         return this.client.get("/_db_updates", query, null).getBodyData().jsonObject();
     }
