@@ -45,8 +45,11 @@ public class Server
         return (String) this.client.get("/_log", query, null).getBody();
     }
 
+    public JSONObject getStats() throws Exception {
+        return this.getStats("");
+    }
     public JSONObject getStats(String path) throws Exception {
-        return this.client.get("/_stats/"+ Util.ifNull(path, ""), null, null).getBodyData().jsonObject();
+        return this.client.get("/_stats/"+ path, null, null).getBodyData().jsonObject();
     }
 
     public String getUuid() {
