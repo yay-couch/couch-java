@@ -126,12 +126,7 @@ public class Request extends Stream
         ) {
             String bodyType = body.getClass().getSimpleName();
             if (bodyType.equals("String")) {
-                String bodyString = (String) body;
-                if (!bodyString.matches("\"[\\{\\[]")) {
-                    this.body = "\""+ bodyString +"\"";
-                } else {
-                    this.body = Util.quote(bodyString);
-                }
+                this.body = Util.quoteWrap(Util.quote((String) body));
             } else if (bodyType.matches("(?i)(int.*|float|short|long|double)")) {
                 this.body = String.valueOf(body);
             } else {
