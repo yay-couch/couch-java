@@ -29,4 +29,8 @@ public class Database
     public boolean ping() throws Exception {
         return (200 == this.client.head(this.name).getStatusCode());
     }
+
+    public JSONObject info() throws Exception {
+        return this.client.get(this.name).getBodyData().jsonObject();
+    }
 }
