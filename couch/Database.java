@@ -18,5 +18,11 @@ public class Database
         this.name = name;
     }
 
+    public Client getClient() {
+        return this.client;
+    }
 
+    public String getName() {
+        return this.name;
+    }
 }
