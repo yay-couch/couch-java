@@ -132,6 +132,9 @@ public class Client
         return this.request(Request.METHOD_PUT +" /"+ uri, uriParams, body, headers);
     }
 
+    public Response delete(String uri, Object uriParams) throws Exception {
+        return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, null);
+    }
     public Response delete(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
         return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, headers);
     }
