@@ -124,9 +124,17 @@ public final class Util
     public static String quote(String in) {
         return in.replaceAll("\"", "\\\\\"");
     }
-
     public static String quoteEncode(String in) {
         return in.replaceAll("\"", "%22");
+    }
+    public static String quoteWrap(String in) {
+        if (!in.matches("^\"(?=[\\{\\[]).+")) {
+            in = "\""+ in +"\"";
+        }
+        return in;
+    }
+    public static String quoteUnwrap(String in) {
+        return in.replaceAll("^\"+|\"+$", "");
     }
 
     public static boolean isEmpty(final String in) {
