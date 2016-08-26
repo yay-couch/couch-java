@@ -100,4 +100,11 @@ public class Server
     public JSONObject getConfig(String section, String key) throws Exception {
         return this.client.get("/_config/"+ section +"/"+ key, null, null).getBodyData().jsonObject();
     }
+
+    public String setConfig(String section, String key, String value) throws Exception {
+        if (Util.isEmpty(section) || Util.isEmpty(key)) {
+            throw new Exception("Both section & key required!");
+        }
+        return (String) this.client.put("/_config/"+ section +"/"+ key, null, value, null).getBody();
+    }
 }
