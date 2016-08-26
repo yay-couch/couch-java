@@ -25,4 +25,8 @@ public class Database
     public String getName() {
         return this.name;
     }
+
+    public boolean ping() throws Exception {
+        return (200 == this.client.head(this.name).getStatusCode());
+    }
 }
