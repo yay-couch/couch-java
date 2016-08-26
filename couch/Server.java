@@ -81,4 +81,8 @@ public class Server
     public boolean restart() throws Exception {
        return (202 == this.client.post("/_restart", null, null, null).getStatusCode());
     }
+
+    public JSONObject getConfig(String section, String key) throws Exception {
+        return this.client.get("/_config/"+ section +"/"+ key, null, null).getBodyData().jsonObject();
+    }
 }
