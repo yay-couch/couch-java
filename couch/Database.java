@@ -41,4 +41,14 @@ public class Database
     public boolean remove() throws Exception {
         return (200 == this.client.delete(this.name).getStatusCode());
     }
+
+    public JSONObject replicate(String target, Boolean targetCreate) throws Exception {
+        Map body = Util.paramList(
+            "source", this.name,
+            "target", target,
+            "create_target", targetCreate
+        );
+
+        return this.client.post("/_replicate", null, body).getBodyData().jsonObject();
+    }
 }
