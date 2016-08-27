@@ -35,6 +35,10 @@ public class Database
     }
 
     public boolean create() throws Exception {
-        return (201 == this.client.put(this.name, null, null, null).getStatusCode());
+        return (201 == this.client.put(this.name).getStatusCode());
+    }
+
+    public boolean remove() throws Exception {
+        return (200 == this.client.delete(this.name).getStatusCode());
     }
 }
