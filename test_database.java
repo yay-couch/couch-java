@@ -18,5 +18,8 @@ class TestDatabase
 
         // dump(database.ping());
         // dump(database.info());
+        // dump(database.create());
+        // dump(database.remove());
+        dump(database.replicate("foo_rep_1", true));
     }
 }
