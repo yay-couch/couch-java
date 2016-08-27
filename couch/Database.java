@@ -33,4 +33,8 @@ public class Database
     public JSONObject info() throws Exception {
         return this.client.get(this.name).getBodyData().jsonObject();
     }
+
+    public boolean create() throws Exception {
+        return (201 == this.client.put(this.name, null, null, null).getStatusCode());
+    }
 }
