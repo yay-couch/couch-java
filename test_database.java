@@ -20,6 +20,8 @@ class TestDatabase
         // dump(database.info());
         // dump(database.create());
         // dump(database.remove());
-        dump(database.replicate("foo_rep_1", true));
+        // dump(database.replicate("foo_rep_1", true));
+
+        // dump(database.getDocument("0f1eb3ba90772b64aee2f44b3c00055b"));
     }
 }
