@@ -51,4 +51,21 @@ public class Database
 
         return this.client.post("/_replicate", null, body).getBodyData().jsonObject();
     }
+
+    public JSONObject getDocument(String key) throws Exception {
+        Map query = Util.paramList(
+            "include_docs", true,
+            "key"         , Util.quoteWrap(key)
+        );
+
+        JSONObject data = this.client.get(this.name +"/_all_docs", query).getBodyData().jsonObject();
+        if (data.has("rows")) {
+            JSONArray rows = data.getJSONArray("rows");
+            if (rows.length() > 0) {
+                return rows.getJSONObject(0);
+            }
+        }
+
+        return null;
+    }
 }
