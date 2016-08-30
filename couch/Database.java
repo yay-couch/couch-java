@@ -44,8 +44,8 @@ public class Database
 
     public JSONObject replicate(String target, Boolean targetCreate) throws Exception {
         Map body = Util.paramList(
-            "source", this.name,
-            "target", target,
+            "source",        this.name,
+            "target",        target,
             "create_target", targetCreate
         );
 
