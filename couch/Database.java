@@ -75,14 +75,11 @@ public class Database
             query.put("include_docs", true);
         }
 
-        JSONObject data = null;
         if (keys == null) {
-            data = this.client.get(this.name +"/_all_docs", query).getBodyData().jsonObject();
+            return this.client.get(this.name +"/_all_docs", query).getBodyData().jsonObject();
         } else {
             Map body = Util.paramList("keys", keys);
-            data = this.client.post(this.name +"/_all_docs", query, body).getBodyData().jsonObject();
+            return this.client.post(this.name +"/_all_docs", query, body).getBodyData().jsonObject();
         }
-
-        return (data != null) ? data : null;
     }
 }
