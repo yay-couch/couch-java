@@ -23,5 +23,6 @@ class TestDatabase
         // dump(database.replicate("foo_rep_1", true));
 
         // dump(database.getDocument("0f1eb3ba90772b64aee2f44b3c00055b"));
+        // dump(database.getDocumentAll(null, new String[]{"0f1eb3ba90772b64aee2f44b3c00055b1"}));
     }
 }
