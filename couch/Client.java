@@ -66,7 +66,8 @@ public class Client
         return this.response;
     }
 
-    public Response request(String uri, Object uriParams, Object body, HashMap<String, Object> headers) throws Exception {
+    public Response request(String uri, Object uriParams, Object body, HashMap<String, Object> headers)
+            throws Exception {
         Pattern pattern = Pattern.compile("^([A-Z]+)\\s+(/.*)");
         Matcher matcher = pattern.matcher(uri);
         if (!matcher.find()) {
@@ -76,8 +77,8 @@ public class Client
         this.request = new Request(this);
         this.response = new Response();
 
-        uri = String.format("%s:%s/%s",
-            this.host, this.port, matcher.group(2).replaceAll("^[\\s/]+|[\\s/]+$", ""));
+        uri = String.format("%s:%s/%s", this.host, this.port,
+            matcher.group(2).replaceAll("^[\\s/]+|[\\s/]+$", ""));
 
         this.request
             .setMethod(matcher.group(1))
@@ -122,7 +123,8 @@ public class Client
     public Response head(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_HEAD +" /"+ uri, uriParams, null, null);
     }
-    public Response head(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
+    public Response head(String uri, Object uriParams, HashMap<String, Object> headers)
+            throws Exception {
         return this.request(Request.METHOD_HEAD +" /"+ uri, uriParams, null, headers);
     }
 
@@ -132,7 +134,8 @@ public class Client
     public Response get(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, null);
     }
-    public Response get(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
+    public Response get(String uri, Object uriParams, HashMap<String, Object> headers)
+            throws Exception {
         return this.request(Request.METHOD_GET +" /"+ uri, uriParams, null, headers);
     }
 
@@ -145,7 +148,8 @@ public class Client
     public Response post(String uri, Object uriParams, Object body) throws Exception {
         return this.request(Request.METHOD_POST +" /"+ uri, uriParams, body, null);
     }
-    public Response post(String uri, Object uriParams, Object body, HashMap<String, Object> headers) throws Exception {
+    public Response post(String uri, Object uriParams, Object body, HashMap<String, Object> headers)
+            throws Exception {
         return this.request(Request.METHOD_POST +" /"+ uri, uriParams, body, headers);
     }
 
@@ -158,7 +162,8 @@ public class Client
     public Response put(String uri, Object uriParams, Object body) throws Exception {
         return this.request(Request.METHOD_PUT +" /"+ uri, uriParams, body, null);
     }
-    public Response put(String uri, Object uriParams, Object body, HashMap<String, Object> headers) throws Exception {
+    public Response put(String uri, Object uriParams, Object body, HashMap<String, Object> headers)
+            throws Exception {
         return this.request(Request.METHOD_PUT +" /"+ uri, uriParams, body, headers);
     }
 
@@ -168,7 +173,8 @@ public class Client
     public Response delete(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, null);
     }
-    public Response delete(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
+    public Response delete(String uri, Object uriParams, HashMap<String, Object> headers)
+            throws Exception {
         return this.request(Request.METHOD_DELETE +" /"+ uri, uriParams, null, headers);
     }
 
@@ -178,7 +184,8 @@ public class Client
     public Response copy(String uri, Object uriParams) throws Exception {
         return this.request(Request.METHOD_COPY +" /"+ uri, uriParams, null, null);
     }
-    public Response copy(String uri, Object uriParams, HashMap<String, Object> headers) throws Exception {
+    public Response copy(String uri, Object uriParams, HashMap<String, Object> headers)
+            throws Exception {
         return this.request(Request.METHOD_COPY +" /"+ uri, uriParams, null, headers);
     }
 }
