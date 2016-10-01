@@ -17,6 +17,6 @@ public class Document
 
     public Document(Database database, Object... data) {
         this.database = database;
-        this.setData(data);
+        // this.setData(data);
     }
 }
