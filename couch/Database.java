@@ -82,4 +82,10 @@ public class Database
             return this.client.post(this.name +"/_all_docs", query, body).getBodyData().jsonObject();
         }
     }
+
+    // public JSONObject createDocument(Object document) throws Exception {
+    // }
+
+    // public JSONObject createDocumentAll(Object[] documents) throws Exception {
+    // }
 }
