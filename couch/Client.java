@@ -105,8 +105,8 @@ public class Client
                         }
                         this.response.setHeader(key, value);
                     }
-                    this.response.setBody(tmp[1]);
                 }
+                this.response.setBody(tmp[1]);
             }
         }
 
