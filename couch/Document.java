@@ -10,6 +10,7 @@ import couch.util.Util;
 public class Document
 {
     private final Database database;
+    private Map data = Util.map();
 
     public Document(Database database) {
         this.database = database;
@@ -19,4 +20,8 @@ public class Document
     //     this.database = database;
     //     this.setData(data);
     // }
+
+    public Map getData() {
+        return this.data;
+    }
 }
