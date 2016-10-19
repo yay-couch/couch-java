@@ -2,6 +2,7 @@ package couch;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -86,6 +87,16 @@ public class Database
     // public JSONObject createDocument(Object document) throws Exception {
     // }
 
-    // public JSONObject createDocumentAll(Object[] documents) throws Exception {
-    // }
+    public void createDocumentAll(Object[] documents) throws Exception {
+        // List docs = Util.mapList();
+
+        for (Object document : documents) {
+            if (document instanceof Document) {
+                document = (Map) ((Document) document).getData();
+            }
+            System.out.println(document);
+        }
+
+        // return docs;
+    }
 }
