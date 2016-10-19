@@ -3,6 +3,8 @@ package couch.util;
 import java.net.URL;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import javax.xml.bind.DatatypeConverter;
 
 import org.json.JSONArray;
@@ -115,6 +117,9 @@ public final class Util
 
     public static HashMap<String, Object> map() {
         return new HashMap<String, Object>();
+    }
+    public static List<HashMap<String, Object>> mapList() {
+        return new ArrayList<HashMap<String, Object>>();
     }
 
     public static void dump(Object arg) {
