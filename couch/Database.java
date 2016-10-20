@@ -223,4 +223,16 @@ public class Database
     public JSONObject getSecurity() throws Exception {
         return this.client.get(this.name +"/_security").getBodyData().jsonObject();
     }
+
+    public JSONObject setSecurity(Map admins, Map members) throws Exception {
+        if (admins.get("names") == null || admins.get("roles") == null
+            || members.get("names") == null || members.get("roles") == null) {
+            throw new Exception("Specify admins and/or members with names=>roles fields!");
+        }
+
+        return this.client.put(this.name +"/_security", null, Util.paramList(
+            "admins",  admins,
+            "members", members
+        )).getBodyData().jsonObject();;
+    }
 }
