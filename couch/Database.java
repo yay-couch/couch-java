@@ -258,4 +258,8 @@ public class Database
         return Integer.parseInt(
             this.client.get(this.name +"/_revs_limit").getBody().toString().trim());
     }
+
+    public JSONObject setRevisionLimit(int limit) throws Exception {
+        return this.client.put(this.name +"/_revs_limit", null, limit).getBodyData().jsonObject();
+    }
 }
