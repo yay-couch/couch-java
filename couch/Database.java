@@ -157,6 +157,14 @@ public class Database
         return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
     }
 
+    public JSONObject deleteDocument(Object document) throws Exception {
+        JSONArray data = this.deleteDocumentAll(new Object[]{document});
+        if (data.length() > 0) {
+            return data.getJSONObject(0);
+        }
+        return null;
+    }
+
     public JSONArray deleteDocumentAll(Object[] documents) throws Exception {
         Map[] docs = Util.mapList(documents.length);
 
