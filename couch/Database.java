@@ -198,4 +198,8 @@ public class Database
 
         return this.client.post(this.name +"/_changes", query, body).getBodyData().jsonObject();
     }
+
+    public JSONObject compact(String ddoc) throws Exception {
+        return this.client.post(this.name +"/_compact/"+ Util.ifNull(ddoc, "")).getBodyData().jsonObject();
+    }
 }
