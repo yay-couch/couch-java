@@ -79,8 +79,9 @@ public class Database
         if (keys == null) {
             return this.client.get(this.name +"/_all_docs", query).getBodyData().jsonObject();
         } else {
-            Map body = Util.paramList("keys", keys);
-            return this.client.post(this.name +"/_all_docs", query, body).getBodyData().jsonObject();
+            return this.client.post(this.name +"/_all_docs", query, Util.paramList(
+                "keys", keys
+            )).getBodyData().jsonObject();
         }
     }
 
@@ -119,9 +120,9 @@ public class Database
             }
         }
 
-        Map body = Util.paramList("docs", docs);
-
-        return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
+        return this.client.post(this.name +"/_bulk_docs", null, Util.paramList(
+            "docs", docs
+        )).getBodyData().jsonArray();
     }
 
     public JSONObject updateDocument(Object document) throws Exception {
@@ -152,9 +153,9 @@ public class Database
             docs[i] = doc;
         }
 
-        Map body = Util.paramList("docs", docs);
-
-        return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
+        return this.client.post(this.name +"/_bulk_docs", null, Util.paramList(
+            "docs", docs
+        )).getBodyData().jsonArray();
     }
 
     public JSONObject deleteDocument(Object document) throws Exception {
@@ -183,9 +184,9 @@ public class Database
             docs[i] = doc;
         }
 
-        Map body = Util.paramList("docs", docs);
-
-        return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
+        return this.client.post(this.name +"/_bulk_docs", null, Util.paramList(
+            "docs", docs
+        )).getBodyData().jsonArray();
     }
 
     public JSONObject getChanges(Map query, String[] docIds) throws Exception {
@@ -194,13 +195,14 @@ public class Database
             query.put("filter", "_doc_ids");
         }
 
-        Map body = Util.paramList("doc_ids", docIds);
-
-        return this.client.post(this.name +"/_changes", query, body).getBodyData().jsonObject();
+        return this.client.post(this.name +"/_changes", query, Util.paramList(
+            "doc_ids", docIds
+        )).getBodyData().jsonObject();
     }
 
     public JSONObject compact(String ddoc) throws Exception {
-        return this.client.post(this.name +"/_compact/"+ Util.ifNull(ddoc, "")).getBodyData().jsonObject();
+        return this.client.post(this.name +"/_compact/"+
+            Util.ifNull(ddoc, "")).getBodyData().jsonObject();
     }
 
     public JSONObject ensureFullCommit() throws Exception {
