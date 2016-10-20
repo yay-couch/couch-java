@@ -27,10 +27,39 @@ class TestDatabase
 
         // dump(Util.mapList());
 
-        Object[] documents = new Object[1];
+        Object[] documents = new Object[2];
         documents[0] = new Document(database);
+        // documents[1] = new HashMap<String, Object>();
+        // documents[1].put("foo", 1);
 
-        database.createDocumentAll(documents);
+        Map document = new HashMap<String, Object>();
+        document.put("foo",1);
+        // documents[1] = document;
+
+        // dump(database.createDocument(document));
         // dump(database.createDocumentAll(documents));
+
+        document.put("_id", "884af610d6eb386450bce4785f0029f41");
+        document.put("_rev", "5-a93c93a75a737719b221243e3629803a");
+
+        // database.updateDocument(document);
+        // database.updateDocumentAll(new Object[]{document});
+
+        // database.deleteDocument(document);
+        // database.deleteDocumentAll(new Object[]{document});
+
+        // dump(database.getChanges(null, new String[]{"884af610d6eb386450bce4785f0029f41"}));
+
+        // dump(database.compact(""));
+        // dump(database.ensureFullCommit());
+        // dump(database.viewCleanup());
+        // dump(database.viewTemp("function(doc){if(doc.type=='tmp') emit(null,doc)}", null));
+
+        // dump(database.getSecurity());
+        // dump(database.setSecurity(null, null));
+
+        // dump(database.getRevisionLimit());
+        // dump(database.setRevisionLimit(1000));
+
     }
 }
