@@ -247,4 +247,10 @@ public class Database
             docId, docRevs
         )).getBodyData().jsonObject();
     }
+
+    public JSONObject getMissingRevisionsDiff(String docId, String[] docRevs) throws Exception {
+        return this.client.post(this.name +"/_revs_diff", null, Util.paramList(
+            docId, docRevs
+        )).getBodyData().jsonObject();
+    }
 }
