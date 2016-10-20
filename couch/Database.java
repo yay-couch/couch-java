@@ -210,4 +210,12 @@ public class Database
     public JSONObject viewCleanup() throws Exception {
         return this.client.post(this.name +"/_view_cleanup").getBodyData().jsonObject();
     }
+
+    public JSONObject viewTemp(String map, String reduce) throws Exception {
+        Map body = Util.paramList(
+            "map",    map,
+            "reduce", reduce
+        );
+        return this.client.post(this.name +"/_temp_view", null, body).getBodyData().jsonObject();
+    }
 }
