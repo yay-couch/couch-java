@@ -212,11 +212,10 @@ public class Database
     }
 
     public JSONObject viewTemp(String map, String reduce) throws Exception {
-        Map body = Util.paramList(
+        return this.client.post(this.name +"/_temp_view", null, Util.paramList(
             "map",    map,
             "reduce", reduce
-        );
-        return this.client.post(this.name +"/_temp_view", null, body).getBodyData().jsonObject();
+        )).getBodyData().jsonObject();
     }
 
     public JSONObject getSecurity() throws Exception {
