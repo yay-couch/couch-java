@@ -121,9 +121,12 @@ public final class Util
     // public static List<HashMap<String, Object>> mapList() {
     //     return new ArrayList<HashMap<String, Object>>();
     // }
-    // public static HashMap<String, Object>[] mapList() {
-    //     return new HashMap[1];
-    // }
+    public static HashMap<String, Object>[] mapList() {
+        return new HashMap[1];
+    }
+    public static HashMap<String, Object>[] mapList(int i) {
+        return new HashMap[i];
+    }
 
     public static void dump(Object arg) {
         System.out.println(arg);
