@@ -202,4 +202,8 @@ public class Database
     public JSONObject compact(String ddoc) throws Exception {
         return this.client.post(this.name +"/_compact/"+ Util.ifNull(ddoc, "")).getBodyData().jsonObject();
     }
+
+    public JSONObject ensureFullCommit() throws Exception {
+        return this.client.post(this.name +"/_ensure_full_commit").getBodyData().jsonObject();
+    }
 }
