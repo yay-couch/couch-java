@@ -218,4 +218,8 @@ public class Database
         );
         return this.client.post(this.name +"/_temp_view", null, body).getBodyData().jsonObject();
     }
+
+    public JSONObject getSecurity() throws Exception {
+        return this.client.get(this.name +"/_security").getBodyData().jsonObject();
+    }
 }
