@@ -87,16 +87,35 @@ public class Database
     // public JSONObject createDocument(Object document) throws Exception {
     // }
 
-    public void createDocumentAll(Object[] documents) throws Exception {
-        // List docs = Util.mapList();
+    public JSONArray createDocumentAll(Object[] documents) throws Exception {
+        Map[] docs = Util.mapList(documents.length);
 
-        for (Object document : documents) {
-            if (document instanceof Document) {
-                document = (Map) ((Document) document).getData();
+        for (int i = 0; i < documents.length; i++) {
+            if (docs[i] == null) {
+                docs[i] = Util.map();
             }
-            System.out.println(document);
+
+            Map doc = Util.map();
+            Object document = documents[i];
+            if (document instanceof Document) {
+                doc = ((Document) document).getData();
+            } else if (document instanceof Map) {
+                doc = (Map) document;
+            }
+
+            for (Map.Entry<String, Object> me : ((HashMap<String, Object>) doc).entrySet()) {
+                String key = me.getKey();
+                Object value = me.getValue();
+                // this is create method, no update allowed
+                if (key == "_rev" || key == "_deleted") {
+                    continue;
+                }
+                docs[i].put(key, value);
+            }
         }
 
-        // return docs;
+        Map body = Util.paramList("docs", docs);
+
+        return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
     }
 }
