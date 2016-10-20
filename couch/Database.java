@@ -241,4 +241,10 @@ public class Database
             docId, docRevs
         )).getBodyData().jsonObject();
     }
+
+    public JSONObject getMissingRevisions(String docId, String[] docRevs) throws Exception {
+        return this.client.post(this.name +"/_missing_revs", null, Util.paramList(
+            docId, docRevs
+        )).getBodyData().jsonObject();
+    }
 }
