@@ -84,8 +84,13 @@ public class Database
         }
     }
 
-    // public JSONObject createDocument(Object document) throws Exception {
-    // }
+    public JSONObject createDocument(Object document) throws Exception {
+        JSONArray data = this.createDocumentAll(new Object[]{document});
+        if (data.length() > 0) {
+            return data.getJSONObject(0);
+        }
+        return null;
+    }
 
     public JSONArray createDocumentAll(Object[] documents) throws Exception {
         Map[] docs = Util.mapList(documents.length);
