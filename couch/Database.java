@@ -124,6 +124,14 @@ public class Database
         return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
     }
 
+    public JSONObject updateDocument(Object document) throws Exception {
+        JSONArray data = this.updateDocumentAll(new Object[]{document});
+        if (data.length() > 0) {
+            return data.getJSONObject(0);
+        }
+        return null;
+    }
+
     public JSONArray updateDocumentAll(Object[] documents) throws Exception {
         Map[] docs = Util.mapList(documents.length);
 
