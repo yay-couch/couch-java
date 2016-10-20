@@ -156,4 +156,27 @@ public class Database
 
         return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
     }
+
+    public JSONArray deleteDocumentAll(Object[] documents) throws Exception {
+        Map[] docs = Util.mapList(documents.length);
+
+        for (int i = 0; i < documents.length; i++) {
+            Map doc = Util.map();
+            Object document = documents[i];
+            if (document instanceof Document) {
+                doc = ((Document) document).getData();
+            } else if (document instanceof Map) {
+                doc = (Map) document;
+            }
+
+            // just add "_deleted" param into document
+            doc.put("_deleted", true);
+
+            docs[i] = doc;
+        }
+
+        Map body = Util.paramList("docs", docs);
+
+        return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
+    }
 }
