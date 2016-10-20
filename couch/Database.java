@@ -206,4 +206,8 @@ public class Database
     public JSONObject ensureFullCommit() throws Exception {
         return this.client.post(this.name +"/_ensure_full_commit").getBodyData().jsonObject();
     }
+
+    public JSONObject viewCleanup() throws Exception {
+        return this.client.post(this.name +"/_view_cleanup").getBodyData().jsonObject();
+    }
 }
