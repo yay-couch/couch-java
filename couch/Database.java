@@ -144,12 +144,12 @@ public class Database
                 doc = (Map) document;
             }
 
-            docs[i] = doc;
-
             // these are required params
-            if (docs[i].get("_id") == null || docs[i].get("_rev") == null) {
+            if (doc.get("_id") == null || doc.get("_rev") == null) {
                 throw new Exception("Both _id & _rev fields are required!");
             }
+
+            docs[i] = doc;
         }
 
         Map body = Util.paramList("docs", docs);
