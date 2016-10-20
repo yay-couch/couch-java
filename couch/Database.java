@@ -96,16 +96,16 @@ public class Database
         Map[] docs = Util.mapList(documents.length);
 
         for (int i = 0; i < documents.length; i++) {
-            if (docs[i] == null) {
-                docs[i] = Util.map();
-            }
-
             Map doc = Util.map();
             Object document = documents[i];
             if (document instanceof Document) {
                 doc = ((Document) document).getData();
             } else if (document instanceof Map) {
                 doc = (Map) document;
+            }
+
+            if (docs[i] == null) {
+                docs[i] = Util.map();
             }
 
             for (Map.Entry<String, Object> me : ((HashMap<String, Object>) doc).entrySet()) {
@@ -116,6 +116,31 @@ public class Database
                     continue;
                 }
                 docs[i].put(key, value);
+            }
+        }
+
+        Map body = Util.paramList("docs", docs);
+
+        return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
+    }
+
+    public JSONArray updateDocumentAll(Object[] documents) throws Exception {
+        Map[] docs = Util.mapList(documents.length);
+
+        for (int i = 0; i < documents.length; i++) {
+            Map doc = Util.map();
+            Object document = documents[i];
+            if (document instanceof Document) {
+                doc = ((Document) document).getData();
+            } else if (document instanceof Map) {
+                doc = (Map) document;
+            }
+
+            docs[i] = doc;
+
+            // these are required params
+            if (docs[i].get("_id") == null || docs[i].get("_rev") == null) {
+                throw new Exception("Both _id & _rev fields are required!");
             }
         }
 
