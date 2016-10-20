@@ -235,4 +235,10 @@ public class Database
             "members", members
         )).getBodyData().jsonObject();;
     }
+
+    public JSONObject purge(String docId, String[] docRevs) throws Exception {
+        return this.client.post(this.name +"/_purge", null, Util.paramList(
+            docId, docRevs
+        )).getBodyData().jsonObject();
+    }
 }
