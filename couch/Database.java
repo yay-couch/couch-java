@@ -187,4 +187,15 @@ public class Database
 
         return this.client.post(this.name +"/_bulk_docs", null, body).getBodyData().jsonArray();
     }
+
+    public JSONObject getChanges(Map query, String[] docIds) throws Exception {
+        query = Util.param(query);
+        if (docIds != null) {
+            query.put("filter", "_doc_ids");
+        }
+
+        Map body = Util.paramList("doc_ids", docIds);
+
+        return this.client.post(this.name +"/_changes", query, body).getBodyData().jsonObject();
+    }
 }
