@@ -2,7 +2,6 @@ package couch;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
