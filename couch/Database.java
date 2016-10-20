@@ -233,7 +233,7 @@ public class Database
         return this.client.put(this.name +"/_security", null, Util.paramList(
             "admins",  admins,
             "members", members
-        )).getBodyData().jsonObject();;
+        )).getBodyData().jsonObject();
     }
 
     public JSONObject purge(String docId, String[] docRevs) throws Exception {
@@ -252,5 +252,10 @@ public class Database
         return this.client.post(this.name +"/_revs_diff", null, Util.paramList(
             docId, docRevs
         )).getBodyData().jsonObject();
+    }
+
+    public int getRevisionLimit() throws Exception {
+        return Integer.parseInt(
+            this.client.get(this.name +"/_revs_limit").getBody().toString().trim());
     }
 }
