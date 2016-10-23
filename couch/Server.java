@@ -103,7 +103,7 @@ public class Server
         return this.client.get("/_config/"+ section).getBodyData().jsonObject();
     }
     public String getConfig(String section, String key) throws Exception {
-        Response response = this.client.delete("/_config/"+ section +"/"+ key);
+        Response response = this.client.get("/_config/"+ section +"/"+ key);
         String value = null;
         if (response.getStatusCode() == 200) {
             value = (String) response.getBody();
